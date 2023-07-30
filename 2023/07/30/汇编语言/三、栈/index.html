@@ -16,26 +16,22 @@
   <meta name="author" content="Jwj-Learning">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Docker概述出现背景将环境与项目一起安装打包，避免部署环境的繁杂工作 及跨平台问题 Java — apk — 发布（应用商店） — 使用apk — 安装即可用 java — jar(环境) — 打包项目带上环境（镜像）— (Docker仓库：商店) — 下载发布的镜像 — 直接运行 开发思想集装箱（&#x3D;&#x3D;互相隔离&#x3D;&#x3D;的项目） jar — 多个应用（端口冲突">
+    <meta name="description" content="三、*栈1. 栈的概念栈是一种具有特殊的访问方式的存储空间。它的特殊性就在于，最后进入这个空间的数据，最先出去。 2. CPU栈机制入栈就是将一个新的元素放到栈顶，出栈就是从栈顶取出一个元素。栈顶的元素总是最后入栈，需要出栈时，又最先被从栈中取出。栈的这种操作规则被称为:LIFO(Last In First Out，后进先出)。从程序化的⻆度来讲，应该有一个标记，这个标记一直指示着栈顶。（SS：S">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker">
-<meta property="og:url" content="http://example.com/2023/07/30/Docker/Docker/index.html">
+<meta property="og:title" content="三、栈">
+<meta property="og:url" content="http://example.com/2023/07/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E4%B8%89%E3%80%81%E6%A0%88/index.html">
 <meta property="og:site_name" content="Dreaming">
-<meta property="og:description" content="Docker概述出现背景将环境与项目一起安装打包，避免部署环境的繁杂工作 及跨平台问题 Java — apk — 发布（应用商店） — 使用apk — 安装即可用 java — jar(环境) — 打包项目带上环境（镜像）— (Docker仓库：商店) — 下载发布的镜像 — 直接运行 开发思想集装箱（&#x3D;&#x3D;互相隔离&#x3D;&#x3D;的项目） jar — 多个应用（端口冲突">
+<meta property="og:description" content="三、*栈1. 栈的概念栈是一种具有特殊的访问方式的存储空间。它的特殊性就在于，最后进入这个空间的数据，最先出去。 2. CPU栈机制入栈就是将一个新的元素放到栈顶，出栈就是从栈顶取出一个元素。栈顶的元素总是最后入栈，需要出栈时，又最先被从栈中取出。栈的这种操作规则被称为:LIFO(Last In First Out，后进先出)。从程序化的⻆度来讲，应该有一个标记，这个标记一直指示着栈顶。（SS：S">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/Docker/image-20230726232454445.png">
-<meta property="og:image" content="http://example.com/images/Docker/image-20230726232923656.png">
-<meta property="og:image" content="http://example.com/images/Docker/image-20230728124422847.png">
-<meta property="article:published_time" content="2023-07-30T02:05:38.000Z">
-<meta property="article:modified_time" content="2023-07-30T08:57:30.324Z">
+<meta property="article:published_time" content="2023-07-30T08:45:08.000Z">
+<meta property="article:modified_time" content="2023-07-30T08:59:27.763Z">
 <meta property="article:author" content="Jwj-Learning">
-<meta property="article:tag" content="软件介绍">
+<meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/Docker/image-20230726232454445.png">
   
   
   
-  <title>Docker - Dreaming</title>
+  <title>三、栈 - Dreaming</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Docker"></span>
+            <span id="subtitle" data-typed-text="三、栈"></span>
           
         </div>
 
@@ -212,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-30 10:05" pubdate>
-          2023年7月30日 上午
+        <time datetime="2023-07-30 16:45" pubdate>
+          2023年7月30日 下午
         </time>
       </span>
     
@@ -224,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          909 字
+          2.1k 字
         
       </span>
     
@@ -235,7 +231,7 @@
         
         
         
-          8 分钟
+          18 分钟
         
       </span>
     
@@ -272,66 +268,40 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Docker</h1>
+            <h1 id="seo-header">三、栈</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h1><h2 id="出现背景"><a href="#出现背景" class="headerlink" title="出现背景"></a>出现背景</h2><p>将环境与项目一起安装打包，避免部署环境的繁杂工作</p>
-<p>及跨平台问题</p>
-<p>Java — apk — 发布（应用商店） — 使用apk — 安装即可用</p>
-<p>java — jar(环境) — 打包项目带上环境（镜像）— (Docker仓库：商店) — 下载发布的镜像 — 直接运行</p>
-<h2 id="开发思想"><a href="#开发思想" class="headerlink" title="开发思想"></a>开发思想</h2><p>集装箱（&#x3D;&#x3D;互相隔离&#x3D;&#x3D;的项目）</p>
-<p>jar — 多个应用（端口冲突）— 交叉并行</p>
-<p>Docker利用隔离机制，将服务器利用到极致</p>
-<h2 id="历史发展"><a href="#历史发展" class="headerlink" title="历史发展"></a>历史发展</h2><p>pass云计算服务+LXC容器技术 — Docker（容器化技术&#x3D;&#x3D;也是虚拟化技术！&#x3D;&#x3D;）</p>
-<p>比虚拟机轻巧，方便，启动速度快，占用内存小（但完整）</p>
-<p>区别：</p>
-<blockquote>
-<p>vm	:	linux centos 原生镜像	互相隔离，需要开启多个虚拟机</p>
-<p>docker : 隔离，镜像（4m+jdk+mysql）	小巧，运行镜像就可以，几M，秒级启动 </p>
-</blockquote>
-<h2 id="关于Docker"><a href="#关于Docker" class="headerlink" title="关于Docker"></a>关于Docker</h2><p>&#x3D;&#x3D;基于Go语言开发&#x3D;&#x3D;</p>
-<p>官网：<a target="_blank" rel="noopener" href="https://www.docker.com/">https://www.docker.com/</a>	</p>
-<p>帮助文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/">https://docs.docker.com/</a>	很详细</p>
-<p>仓库地址：<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a>	与git类似</p>
-<h2 id="隔离机制"><a href="#隔离机制" class="headerlink" title="隔离机制"></a>隔离机制</h2><p><img src="/../images/Docker/image-20230726232454445.png" srcset="/img/loading.gif" lazyload alt="image-20230726232454445"></p>
-<pre><code class="hljs">                                                                                     虚拟机（内核+操作环境+APP）
-</code></pre>
-<blockquote>
+                <h1 id="三、-栈"><a href="#三、-栈" class="headerlink" title="三、*栈"></a>三、*栈</h1><h2 id="1-栈的概念"><a href="#1-栈的概念" class="headerlink" title="1. 栈的概念"></a>1. 栈的概念</h2><p>栈是一种具有特殊的访问方式的<strong>存储空间</strong>。它的特殊性就在于，最后进入这个空间的数据，最先出去。</p>
+<h2 id="2-CPU栈机制"><a href="#2-CPU栈机制" class="headerlink" title="2. CPU栈机制"></a>2. CPU栈机制</h2><p>入栈就是将一个新的元素放到栈顶，出栈就是从栈顶取出一个元素。栈顶的元素总是最后入栈，需要出栈时，又最先被从栈中取出。栈的这种操作规则被称为:LIFO(Last In First Out，后进先出)。<br>从程序化的⻆度来讲，应该有一个标记，这个标记一直指示着栈顶。（SS：SP）</p>
 <ul>
-<li>资源占用大</li>
-<li>启动步骤冗余，慢！</li>
+<li>栈从栈底(高位)开始存入数据，从栈顶(低位)开始复制数据转移出寄存器。</li>
 </ul>
-</blockquote>
-<p><img src="/../images/Docker/image-20230726232923656.png" srcset="/img/loading.gif" lazyload></p>
-<p>​																									Docker（内核+镜像） </p>
+<h2 id="3-SS和SP"><a href="#3-SS和SP" class="headerlink" title="3. SS和SP"></a>3. SS和SP</h2><p>CPU 如何知道栈顶的位置?显然，也应该有相应的寄存器来存放栈顶的地址，8086CPU中，有两个寄存器，<strong>段寄存器SS和寄存器SP，栈顶的段地址存放在SS中，偏移地址存放在SP中。任意时刻，SS:SP指向栈顶元素。push指令和pop指令执行时，CPU 从SS 和SP 中得到栈顶的地址。</strong></p>
 <blockquote>
+<p>push ax 的执行，由以下两步完成。<br>(1)SP&#x3D;SP-2，SS:SP 指向当前栈顶前面的单元，以当前栈顶前面的单元为新的栈顶;<br>(2)将ax中的内容送入SS:SP 指向的内存单元处，SS:SP此时指向新栈顶。</p>
+</blockquote>
+<blockquote>
+<p>pop ax的执行过程和push ax刚好相反，由以下两步完成。<br>(1)将SS:SP 指向的内存单元处的数据送入ax 中;<br>(2)SP&#x3D;SP+2，SS:SP 指向当前栈顶下面的单元，以当前栈顶下面的单元为新的栈顶。</p>
+</blockquote>
 <ul>
-<li>容器化技术（&#x3D;&#x3D;不是完整的操作系统&#x3D;&#x3D;）</li>
-<li>容器内的应用直接运行在宿主机的内容，容器没有自己的内核，也没有虚拟硬件，所以轻便</li>
+<li>push指令先指定空位置，再存入数据</li>
+<li>pop指令先存入数据到寄存器中，再改变SS:SP位置</li>
+<li>pop 操作前的栈顶元素依然存在，但是，它己不在栈中。当再次执行 push 等入栈指令后，SS:SP移至上一个内存单元，并在里面写入新的数据，它将被覆盖。<br>  故磁盘格式化并没有清除数据，只是把“指针”复位了而已，下次写入只是覆盖原有数据，可以复原。</li>
 </ul>
-</blockquote>
-<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><p>更快速的交付和部署</p>
-<p>更便捷的升级和扩缩容（镜像一键运行）</p>
-<p>更简单的系统运维</p>
-<p>更高效的资源利用（内核级别的虚拟化）</p>
-<h2 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h2><p><img src="/../images/Docker/image-20230728124422847.png" srcset="/img/loading.gif" lazyload alt="image-20230728124422847"></p>
-<p><strong>Client（客户端）</strong></p>
+<h2 id="4-栈溢出"><a href="#4-栈溢出" class="headerlink" title="4. 栈溢出"></a>4. 栈溢出</h2><p>将 10010H~1001FH当作栈空间，该栈空间容量为16字节(8字)，初始状态为空，SS&#x3D;1000H、SP&#x3D;0020H，SS:SP 指向10020H;<br>在执行8次push ax 后，向栈中压入8个字，栈满，SS: SP 指向 10010H;<br>再次执行 push ax: sp&#x3D;sp- 2，SS:SP 指向 1000EH，栈顶超出了栈空间，ax 中的数据送入1000 EH 单元处，将栈空间外的数据覆盖<br>上面描述了执行push、pop 指令时，发生的栈顶超界问题。可以看到，当栈满的时候再使用push 指令入栈，或栈空的时候再使用pop 指令出栈，都将发生栈顶超界问题（栈溢出）。</p>
+<p>栈顶超界是危险的，因为我们既然将一段空间安排为栈，那么在栈空间之外的空间里很可能存放了具有其他用途的数据、代码等，这些数据、代码可能是我们自己程序中的，也可能是别的程序中的(毕竟一个计算机系统中并不是只有我们自己的程序在运行)。但是由于我们在入栈出栈时的不小心，而将这些数据、代码意外地改写，将会引发一连串的错误。</p>
 <blockquote>
-<p>docker build	创建</p>
-<p>docker pull	选取</p>
-<p>docker run	运行</p>
+<p><strong>PS：</strong> 如果是故意造成栈溢出的，就可以利用此特性将一些程序中的受保护数据取出（例如用户登录密码等信息），所以栈溢出也是PWN攻击的一种方式。</p>
 </blockquote>
-<p><strong>DOCKER_HOST(服务器）</strong></p>
-<blockquote>
-<p>Images（镜像）&#x3D;&#x3D;类似于C++中的类&#x3D;&#x3D;（用于创建容器服务）</p>
-<p>Containers（容器）&#x3D;&#x3D;类似于C++中类创建的对象&#x3D;&#x3D;（负责运行具体项目）</p>
-</blockquote>
-<p>**Registry（仓库） **</p>
-<p>存放镜像的地方</p>
-<p>分公有和私有</p>
-<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1>
+<p>8086CPU只知道栈项在何处(由SS:SP指示) ，而不知道我们安排的栈空间有多大。这点就好像CPU只知道当前要执行的指令在何处(由CS:IP指示)，而不知道要执行的指令有多少。从这两点上我们可以看出8086CPU 的工作机理，它只考虑当前的情况:当前的栈顶在何处、当前要执行的指令是哪一条。</p>
+<h2 id="5-栈段"><a href="#5-栈段" class="headerlink" title="5. 栈段"></a>5. 栈段</h2><p>我们可以将长度为N( ≤ 64KB) 的一组地址连续、起始地址为16的倍数的内存单元，当作栈空间来用，从而定义了一个栈段。比如，我们将 10010H~1001FH 这段长度为16字节的内存空间当作栈来用，以栈的方式进行访问。这段空间就可以称为一个栈段。</p>
+<p>如果将 10000H~1FFFFH 这段空间当作栈段，SS&#x3D;1000H，栈空间为64KB，栈最底部的字单元地址为1000:FFFE。任意时刻，SS:SP 指向栈顶单元，当栈中只有一个元素的时候，S S&#x3D;1000H，SP&#x3D;FFFEH。栈为空，就相当于栈中唯一的元素出栈，出栈后，SP&#x3D;SP+2.<br>SP原 来为FFFEH，加2后SP&#x3D;0，所以，当栈为空的时候，SS&#x3D;1000H，SP&#x3D;0。</p>
+<p>换一个⻆度看，任意时刻，SS:SP 指向栈顶元素，当栈为空的时候，栈中没有元素，也就不存在栈顶元素，所以sS:SP 只能指向栈的最底部单元下面的单元，该单元的地址为栈最底部的字单元的地址+2。栈最底部字单元的地址为1000:FFFE ，所以栈空时，SP&#x3D;0000H.</p>
+<p><strong>段的总结</strong></p>
+<p>我们可以将一段内存定义为一个段，用一个段地址指示段，用偏移地址访问段内的单元。这完全是我们自己的安排。<br>不管我们如何安排，CPU将内存中的某段内容当作代码，是因CSIP 指向了那里:CPU将某段内存当作栈，是因为SS;SP 指向了那里。我们一定要清楚，什么是我们的安排，以及如何让CPU 按我们的安排行事。要非常清楚 CPU 的工作机理，才能在控制 CPU 按照我们的安排运行的时候做到游刃有余。</p>
+
                 
               </div>
             
@@ -349,12 +319,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%BD%AF%E4%BB%B6/" class="category-chain-item">软件</a>
+  <a href="/categories/PWN/" class="category-chain-item">PWN</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E8%BD%AF%E4%BB%B6/Docker/" class="category-chain-item">Docker</a>
+  <a href="/categories/PWN/pwn%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/" class="category-chain-item">pwn前置知识</a>
   
   
 
@@ -371,7 +341,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/" class="print-no-link">#软件介绍</a>
+        <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" class="print-no-link">#汇编语言</a>
       
     </div>
   
@@ -383,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Docker</div>
-      <div>http://example.com/2023/07/30/Docker/Docker/</div>
+      <div>三、栈</div>
+      <div>http://example.com/2023/07/30/汇编语言/三、栈/</div>
     </div>
     <div class="license-meta">
       
@@ -428,9 +398,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E4%BA%8C%E3%80%81%E5%AF%84%E5%AD%98%E5%99%A8%E4%B8%8E%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/" title="二、寄存器与简单汇编指令">
+                      <a href="/2023/07/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Debug%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A8%8B/" title="四、使用Debug进行简单汇编指令编程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">二、寄存器与简单汇编指令</span>
+                        <span class="hidden-mobile">四、使用Debug进行简单汇编指令编程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -438,8 +408,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="一、基础知识">
-                        <span class="hidden-mobile">一、基础知识</span>
+                      <a href="/2023/07/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E4%BA%8C%E3%80%81%E5%AF%84%E5%AD%98%E5%99%A8%E4%B8%8E%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/" title="二、寄存器与简单汇编指令">
+                        <span class="hidden-mobile">二、寄存器与简单汇编指令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
