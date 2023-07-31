@@ -19,23 +19,23 @@
     <meta name="description" content="五、程序的编写与执行汇编语言程序写出到执行的过程： 写出源程序—&gt;对源程序进行编译连接—&gt;生成可执行文件—&gt;操作系统将其加载入内存—&gt;CPU执行程序 1.源程序源程序包括汇编语言和伪指令。示例： 伪指令伪指令是给编译器看的指令，编译器根据伪指令来进行相关编译工作。 (1) segment与ends作用：定义一个段。segment 表示一个段的开始，ends 表示一个段的结束">
 <meta property="og:type" content="article">
 <meta property="og:title" content="五、程序的编写与执行">
-<meta property="og:url" content="http://example.com/2023/07/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:url" content="http://example.com/2023/08/01/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/index.html">
 <meta property="og:site_name" content="Dreaming">
 <meta property="og:description" content="五、程序的编写与执行汇编语言程序写出到执行的过程： 写出源程序—&gt;对源程序进行编译连接—&gt;生成可执行文件—&gt;操作系统将其加载入内存—&gt;CPU执行程序 1.源程序源程序包括汇编语言和伪指令。示例： 伪指令伪指令是给编译器看的指令，编译器根据伪指令来进行相关编译工作。 (1) segment与ends作用：定义一个段。segment 表示一个段的开始，ends 表示一个段的结束">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/.com//efb0bbc8ec7640f394f8969ec7121190.png">
-<meta property="og:image" content="http://example.com/.com//a18ac4c6e20743bb9f68b823b86ee62d.png">
-<meta property="og:image" content="http://example.com/.com//de516d9e4e404a4d841ce1ddfcdbf566.png">
-<meta property="og:image" content="http://example.com/.com//5b1206afc3884188aed6e36c6b49414d.png">
-<meta property="og:image" content="http://example.com/.com//01840e2ce7d7427cb3c6388c2ce9fae6.png">
-<meta property="og:image" content="http://example.com/.com//9457bf9e04a2456fb0a9b95b8f49a9f8.png">
-<meta property="og:image" content="http://example.com/.com//1ce74633aafe437480a8c67bde1d2c2f.png">
-<meta property="article:published_time" content="2023-07-30T08:46:05.000Z">
-<meta property="article:modified_time" content="2023-07-31T15:32:36.521Z">
+<meta property="og:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/efb0bbc8ec7640f394f8969ec7121190.png">
+<meta property="og:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/a18ac4c6e20743bb9f68b823b86ee62d.png">
+<meta property="og:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/de516d9e4e404a4d841ce1ddfcdbf566.png">
+<meta property="og:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/5b1206afc3884188aed6e36c6b49414d.png">
+<meta property="og:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/01840e2ce7d7427cb3c6388c2ce9fae6.png">
+<meta property="og:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/9457bf9e04a2456fb0a9b95b8f49a9f8.png">
+<meta property="og:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/1ce74633aafe437480a8c67bde1d2c2f.png">
+<meta property="article:published_time" content="2023-07-31T16:53:59.000Z">
+<meta property="article:modified_time" content="2023-07-31T16:58:06.997Z">
 <meta property="article:author" content="Jwj-Learning">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/.com//efb0bbc8ec7640f394f8969ec7121190.png">
+<meta name="twitter:image" content="http://example.com/images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/efb0bbc8ec7640f394f8969ec7121190.png">
   
   
   
@@ -216,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-30 16:46" pubdate>
-          2023年7月30日 下午
+        <time datetime="2023-08-01 00:53" pubdate>
+          2023年8月1日 凌晨
         </time>
       </span>
     
@@ -282,7 +282,7 @@
               <div class="markdown-body">
                 
                 <h1 id="五、程序的编写与执行"><a href="#五、程序的编写与执行" class="headerlink" title="五、程序的编写与执行"></a>五、程序的编写与执行</h1><p><strong>汇编语言程序写出到执行的过程：</strong> 写出源程序—&gt;对源程序进行编译连接—&gt;生成可执行文件—&gt;操作系统将其加载入内存—&gt;CPU执行程序</p>
-<h2 id="1-源程序"><a href="#1-源程序" class="headerlink" title="1.源程序"></a>1.源程序</h2><p>源程序包括汇编语言和伪指令。<br>示例：<br><img src="/.com//efb0bbc8ec7640f394f8969ec7121190.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="1-源程序"><a href="#1-源程序" class="headerlink" title="1.源程序"></a>1.源程序</h2><p>源程序包括汇编语言和伪指令。<br>示例：<br><img src="/../images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/efb0bbc8ec7640f394f8969ec7121190.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h3 id="伪指令"><a href="#伪指令" class="headerlink" title="伪指令"></a>伪指令</h3><p>伪指令是给编译器看的指令，编译器根据伪指令来进行相关编译工作。</p>
 <h4 id="1-segment与ends"><a href="#1-segment与ends" class="headerlink" title="(1) segment与ends"></a>(1) segment与ends</h4><p>作用：定义一个段。<br>segment 表示一个段的开始，ends 表示一个段的结束。</p>
 <p>用法：</p>
@@ -297,7 +297,7 @@
 <p>assume  段寄存器:段名</p>
 </blockquote>
 <h4 id="4-标号"><a href="#4-标号" class="headerlink" title="(4) 标号"></a>(4) 标号</h4><p>一个标号指代了一个段地址。<br>它被编译后最终处理为一个段地址。</p>
-<h3 id="程序与程序结构"><a href="#程序与程序结构" class="headerlink" title="程序与程序结构"></a>程序与程序结构</h3><p><img src="/.com//a18ac4c6e20743bb9f68b823b86ee62d.png" srcset="/img/loading.gif" lazyload alt="图4.2"></p>
+<h3 id="程序与程序结构"><a href="#程序与程序结构" class="headerlink" title="程序与程序结构"></a>程序与程序结构</h3><p><img src="/../images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/a18ac4c6e20743bb9f68b823b86ee62d.png" srcset="/img/loading.gif" lazyload alt="图4.2"></p>
 <h3 id="程序返回"><a href="#程序返回" class="headerlink" title="程序返回"></a>程序返回</h3><h4 id="1-DOS中的程序运行"><a href="#1-DOS中的程序运行" class="headerlink" title="(1)DOS中的程序运行"></a>(1)DOS中的程序运行</h4><p>DOS是一个单任务的操作系统。</p>
 <p>当要运行XXX.exe程序时，DOS程序会终止运行，CPU将控制权移交给此exe程序，程序运行完成后，会返回DOS程序继续运行，等待下一条指令的输入。</p>
 <p>我们称这个过程为<strong>程序返回</strong></p>
@@ -307,7 +307,7 @@
 <p>mov ax,4c00H<br>int 21H</p>
 </blockquote>
 <p><strong>PS:</strong> 这是汇编指令，由CPU负责执行。</p>
-<p>小结：<br><img src="/.com//de516d9e4e404a4d841ce1ddfcdbf566.png" srcset="/img/loading.gif" lazyload alt="表4.1"></p>
+<p>小结：<br><img src="/../images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/de516d9e4e404a4d841ce1ddfcdbf566.png" srcset="/img/loading.gif" lazyload alt="表4.1"></p>
 <h3 id="逻辑错误与语法错误"><a href="#逻辑错误与语法错误" class="headerlink" title="逻辑错误与语法错误"></a>逻辑错误与语法错误</h3><p>被编译器发现的错误是语法错误；编译后，在运行时发生的错误是逻辑错误。<br>（<strong>一个是语句错误书写，一个是缺少必要语句或者本身的逻辑问题</strong>）</p>
 <h2 id="2-环境配置"><a href="#2-环境配置" class="headerlink" title="2.环境配置"></a>2.环境配置</h2><blockquote>
 <p>(1)下载Notepad++（用于编写源程序，用其他文本软件也可以）<br>(2)下载MASM,并将这几个程序与源程序文件放在一起<br>(3)在Notepad++上编写源程序并保存到上述的文件夹中</p>
@@ -316,18 +316,18 @@
 <blockquote>
 <p>mount c D:\StudyAssembler\MASM\ (文件所在位置)<br>C:</p>
 </blockquote>
-<p>如图所示：<br><img src="/.com//5b1206afc3884188aed6e36c6b49414d.png" srcset="/img/loading.gif" lazyload alt="step1："></p>
+<p>如图所示：<br><img src="/../images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/5b1206afc3884188aed6e36c6b49414d.png" srcset="/img/loading.gif" lazyload alt="step1："></p>
 <p>(2)输入以下命令以编译源程序：</p>
 <blockquote>
 <p>masm 1.asm</p>
 </blockquote>
-<p>如下图所示：<br><img src="/.com//01840e2ce7d7427cb3c6388c2ce9fae6.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>如下图所示：<br><img src="/../images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/01840e2ce7d7427cb3c6388c2ce9fae6.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p>(3)编译完成后会生成一个1.obj对象文件，输入以下命令以连接程序：</p>
 <blockquote>
 <p>link 1.obj</p>
 </blockquote>
 <p>由于书本中的1.asm文件只有一个代码段，所以无需作其他配置，接下来一直回车直到出现命令行的出现。</p>
-<p>如下图所示：<br><img src="/.com//9457bf9e04a2456fb0a9b95b8f49a9f8.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>(4)输入“1.exe”运行程序，会看到一个短暂的黑屏，然后回到DOS命令行，程序运行完毕。</p>
+<p>如下图所示：<br><img src="/../images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/9457bf9e04a2456fb0a9b95b8f49a9f8.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>(4)输入“1.exe”运行程序，会看到一个短暂的黑屏，然后回到DOS命令行，程序运行完毕。</p>
 <p>至此，我们完成了1.asm文件的编译、连接和运行，但是，我们并没有看到运行程序的过程。</p>
 <p><strong>PS:</strong> </p>
 <ul>
@@ -341,7 +341,7 @@
 <p>(1)任何通用系统都要提供shell（外壳）程序，用户使用此程序来操作计算机系统进行工作。<br>(2)DOS中有一个程序command.com，这个程序在DOS中称为命令解释器，也就是DOS系统的shell。<br>(3)DOS启动时，先完成其他重要的初始化工作，然后运行command.com，command.com运行后，执行完其他的相关任务后，在屏幕上显示出由当前盘符和当前路径组成的提示符,比如:“c:\”或“c:\windows”等，然后等待用户的输入。<br>(4)command首先根据文件名找到可执行文件，然后将这个可执行文件中的程序加载入内存，设置CS:IP指向程序的入口。此后，command暂停运行，CPU运行程序。程序运行结束后，返回到command中，command再次显示由当前盘符和当前路径组成的提示符，等待用户的输入。在DOS中，command处理各种输入:命令或要执行的程序的文件名。我们就是通过command来进行工作的。</p>
 </blockquote>
 <p>故汇编程序的完整执行过程为：<br>编程 (Edit) 一&gt;l.asm一&gt;编译(masm)一&gt;1.obj一&gt;连接(link)一&gt;1.exe一&gt;加载 (command) 一&gt;内存中的程序一&gt;运行(CPU)</p>
-<h2 id="5-跟踪程序的执行"><a href="#5-跟踪程序的执行" class="headerlink" title="5.跟踪程序的执行"></a>5.跟踪程序的执行</h2><p>在源程序的汇编指令前加标号（对段命名），并在end后加上这个标号，就给程序设置了一个入口。<br>Debug利用中断指令实现对程序的跟踪。<br>CX中存放程序的长度。<br><img src="/.com//1ce74633aafe437480a8c67bde1d2c2f.png" srcset="/img/loading.gif" lazyload alt="图4.20"><br>上图说明内存中程序存放在DS地址+10H（即256字节）处，这256字节里存放着PSP，DOS用来和程序通信。<br>故程序的物理地址为：(X+16)x16+0 (左移一格)<br>可用段地址和偏移地址：X+10H:0</p>
+<h2 id="5-跟踪程序的执行"><a href="#5-跟踪程序的执行" class="headerlink" title="5.跟踪程序的执行"></a>5.跟踪程序的执行</h2><p>在源程序的汇编指令前加标号（对段命名），并在end后加上这个标号，就给程序设置了一个入口。<br>Debug利用中断指令实现对程序的跟踪。<br>CX中存放程序的长度。<br><img src="/../images/%E4%BA%94%E3%80%81%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E5%86%99%E4%B8%8E%E6%89%A7%E8%A1%8C/1ce74633aafe437480a8c67bde1d2c2f.png" srcset="/img/loading.gif" lazyload alt="图4.20"><br>上图说明内存中程序存放在DS地址+10H（即256字节）处，这256字节里存放着PSP，DOS用来和程序通信。<br>故程序的物理地址为：(X+16)x16+0 (左移一格)<br>可用段地址和偏移地址：X+10H:0</p>
 <p>Debug的执行原理：command加载Debug，Debug加载1.exe。程序结束后从1.exe中的程序返回到Debug，从Debug返回到command。</p>
 
                 
@@ -403,7 +403,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>五、程序的编写与执行</div>
-      <div>http://example.com/2023/07/30/汇编语言/五、程序的编写与执行/</div>
+      <div>http://example.com/2023/08/01/汇编语言/五、程序的编写与执行/</div>
     </div>
     <div class="license-meta">
       
@@ -415,7 +415,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月30日</div>
+          <div>2023年8月1日</div>
         </div>
       
       
@@ -447,17 +447,11 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/01/%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="一、基础知识">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">一、基础知识</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Debug%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A8%8B/" title="四、使用Debug进行简单汇编指令编程">
+                      <a href="/2023/08/01/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Debug%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A8%8B/" title="四、使用Debug进行简单汇编指令编程">
                         <span class="hidden-mobile">四、使用Debug进行简单汇编指令编程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
