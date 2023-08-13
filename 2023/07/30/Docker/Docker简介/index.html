@@ -18,16 +18,19 @@
   
     <meta name="description" content="Docker概述出现背景将环境与项目一起安装打包，避免部署环境的繁杂工作 及跨平台问题 Java — apk — 发布（应用商店） — 使用apk — 安装即可用 java — jar(环境) — 打包项目带上环境（镜像）— (Docker仓库：商店) — 下载发布的镜像 — 直接运行 开发思想集装箱（&#x3D;&#x3D;互相隔离&#x3D;&#x3D;的项目） jar — 多个应用（端口冲突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker">
-<meta property="og:url" content="http://example.com/2023/07/30/Docker/Docker/index.html">
+<meta property="og:title" content="Docker简介">
+<meta property="og:url" content="http://example.com/2023/07/30/Docker/Docker%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="Dreaming">
 <meta property="og:description" content="Docker概述出现背景将环境与项目一起安装打包，避免部署环境的繁杂工作 及跨平台问题 Java — apk — 发布（应用商店） — 使用apk — 安装即可用 java — jar(环境) — 打包项目带上环境（镜像）— (Docker仓库：商店) — 下载发布的镜像 — 直接运行 开发思想集装箱（&#x3D;&#x3D;互相隔离&#x3D;&#x3D;的项目） jar — 多个应用（端口冲突">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/Docker/image-20230726232454445.png">
 <meta property="og:image" content="http://example.com/images/Docker/image-20230726232923656.png">
 <meta property="og:image" content="http://example.com/images/Docker/image-20230728124422847.png">
+<meta property="og:image" content="http://example.com/images/Docker/image-20230802220618685.png">
+<meta property="og:image" content="http://example.com/images/Docker/image-20230802223312044.png">
+<meta property="og:image" content="http://example.com/images/Docker/image-20230802224541726.png">
 <meta property="article:published_time" content="2023-07-30T02:05:38.000Z">
-<meta property="article:modified_time" content="2023-07-30T16:01:45.494Z">
+<meta property="article:modified_time" content="2023-08-06T01:17:39.505Z">
 <meta property="article:author" content="Jwj-Learning">
 <meta property="article:tag" content="软件介绍">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +38,7 @@
   
   
   
-  <title>Docker - Dreaming</title>
+  <title>Docker简介 - Dreaming</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Docker"></span>
+            <span id="subtitle" data-typed-text="Docker简介"></span>
           
         </div>
 
@@ -224,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          910 字
+          3.9k 字
         
       </span>
     
@@ -235,7 +238,7 @@
         
         
         
-          8 分钟
+          33 分钟
         
       </span>
     
@@ -272,7 +275,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Docker</h1>
+            <h1 id="seo-header">Docker简介</h1>
             
             
               <div class="markdown-body">
@@ -330,7 +333,94 @@
 <p>**Registry（仓库） **</p>
 <p>存放镜像的地方</p>
 <p>分公有和私有</p>
-<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1>
+<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1><p>Docker 并非是一个通用的容器工具，它依赖于已存在并运行的 Linux 内核环境。</p>
+<p>Docker 实质上是在已经运行的 Linux 下制造了一个隔离的文件环境，因此，Docker 必须部署在 Linux 内核的系统上。如果其他系统想部署 Docker 就必须安装一个虚拟 Linux 环境。</p>
+<p>鉴于CentOS在2024年将不再进行更新维护，我选择在Ubuntu上安装Docker</p>
+<h2 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h2><h3 id="卸载旧版本"><a href="#卸载旧版本" class="headerlink" title="卸载旧版本"></a>卸载旧版本</h3><p>旧版本的 Docker 的名称为 、 或 。在尝试安装之前卸载任何此类旧版本 新版本：dockerdocker.iodocker-engine :::tips sudo apt-get remove docker docker-engine docker.io containerd runc ::: 如果报告未安装这些包，则没关系。apt-get 存储在<code>/var/lib/docker/</code>中的镜像、容器、卷和网络不是 卸载 Docker 时自动删除。</p>
+<h3 id="使用存储库安装"><a href="#使用存储库安装" class="headerlink" title="使用存储库安装"></a>使用存储库安装</h3><p>在新主机上首次安装 Docker 引擎之前，您需要 需要设置 Docker 存储库。之后，您可以安装和更新 存储库中的 Docker。</p>
+<h4 id="设置存储库"><a href="#设置存储库" class="headerlink" title="设置存储库"></a>设置存储库</h4><ol>
+<li>更新软件包索引并安装软件包以允许使用 基于 HTTPS 的存储库：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">sudo apt<span class="hljs-operator">-</span><span class="hljs-keyword">get</span> <span class="hljs-keyword">update</span><br>sudo apt<span class="hljs-operator">-</span><span class="hljs-keyword">get</span> install \<br>    ca<span class="hljs-operator">-</span>certificates \<br>    curl \<br>    gnupg \<br>    lsb<span class="hljs-operator">-</span><span class="hljs-keyword">release</span><br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>添加 Docker 的官方 GPG 密钥：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /etc/apt/keyrings<br>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>使用以下命令设置存储库：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> \<br>  <span class="hljs-string">&quot;deb [arch=<span class="hljs-subst">$(dpkg --print-architecture)</span> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span><br><span class="hljs-string">  <span class="hljs-subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo <span class="hljs-built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null<br></code></pre></td></tr></table></figure>
+
+<h4 id="安装-Docker-engine"><a href="#安装-Docker-engine" class="headerlink" title="安装 Docker engine"></a>安装 Docker engine</h4><p>要安装最新版本，请运行：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin<br></code></pre></td></tr></table></figure>
+
+<p>通过运行映像验证 Docker 引擎安装是否成功</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo docker run hello-world<br></code></pre></td></tr></table></figure>
+
+<p>现在你已经成功安装并启动了Docker engine。用户组存在，但是它不包含任何用户，这就是需要你用<code>sudo</code>运行docker命令的原因。你可以执行在CentOS安装Docker engine的后续步骤来允许非root用户运行docker命令。</p>
+<h3 id="从包安装"><a href="#从包安装" class="headerlink" title="从包安装"></a>从包安装</h3><p>如果你不能使用 Docker 的仓库来安装 Docker Engine，你可以 下载适用于您的版本的文件并手动安装。你需要 每次要升级 Docker 引擎时下载一个新文件。</p>
+<ol>
+<li>转到<a href="https://link.juejin.cn/?target=https://download.docker.com/linux/ubuntu/dists/">download.docker.com&#x2F;linux&#x2F;ubunt…</a>.</li>
+<li>在列表中选择你的 Ubuntu 版本。</li>
+<li>转到并选择适用的体系结构。</li>
+<li>下载以下适用于 Docker 引擎、CLI、containerd 和 和 Docker Compose 包：deb<ul>
+<li>containerd.io  .deb</li>
+<li>docker-ce  .deb</li>
+<li>docker-ce-cli  .deb</li>
+<li>docker-compose-plugin  .deb</li>
+</ul>
+</li>
+<li>安装软件包。将以下示例中的路径更新为 你下载了 Docker 软件包的位置。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dpkg -i ./containerd.io_&lt;version&gt;_&lt;<span class="hljs-built_in">arch</span>&gt;.deb \<br>  ./docker-ce_&lt;version&gt;_&lt;<span class="hljs-built_in">arch</span>&gt;.deb \<br>  ./docker-ce-cli_&lt;version&gt;_&lt;<span class="hljs-built_in">arch</span>&gt;.deb \<br>  ./docker-compose-plugin_&lt;version&gt;_&lt;<span class="hljs-built_in">arch</span>&gt;.deb<br></code></pre></td></tr></table></figure>
+
+<p>Docker 守护程序会自动启动。</p>
+<ol>
+<li>通过运行映像验证 Docker 引擎安装是否成功：</li>
+</ol>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo docker run hello-world<br></code></pre></td></tr></table></figure>
+
+<p>现在你已经成功安装并启动了Docker engine。用户组存在，但是它不包含任何用户，这就是需要你用<code>sudo</code>运行docker命令的原因。你可以执行在CentOS安装Docker engine的后续步骤来允许非root用户运行docker命令。</p>
+<h3 id="自动化脚本安装"><a href="#自动化脚本安装" class="headerlink" title="自动化脚本安装"></a>自动化脚本安装</h3><p>自动化脚本可以自动检测Linux发行版，因此在受支持的Linux发行版中运行自动化脚本的步骤是一致的，如果你想使用自动化脚本来安装Docker engine，请参阅在CentOS中安装Docker engine的使用自动化脚本安装一节。</p>
+<h3 id="二进制文件安装"><a href="#二进制文件安装" class="headerlink" title="二进制文件安装"></a>二进制文件安装</h3><p>不建议在生产环境中使用二进制文件安装Docker engine，如果你的容器技术专家建议你这么做，那么请换一个专家。 二进制文件安装主要是为了不受支持的平台和测试环境中使用。我将简短的介绍在Linux上安装守护程序和客户端二进制文件。</p>
+<h4 id="安装静态二进制文件"><a href="#安装静态二进制文件" class="headerlink" title="安装静态二进制文件"></a>安装静态二进制文件</h4><p>1.下载静态二进制压缩包，转到<a href="https://link.juejin.cn/?target=https://download.docker.com/linux/static/stable/">download.docker.com&#x2F;linux&#x2F;stati…</a>，选择适合你的压缩包。 2.提取压缩包中的二进制文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar xf /path/to/&lt;FILE&gt;.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>3.这一步可选，将二进制文件移动到可执行文件路径下，如果没有这一步，则必须提供调用可执行文件的路径。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">cp</span> docker/* /usr/bin/<br></code></pre></td></tr></table></figure>
+
+<p>4.启动 Docker 守护进程：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo dockerd &amp;<br></code></pre></td></tr></table></figure>
+
+<p>如果尼西亚使用其他选项启动守护进程，请修改上述内容命令或创建并编辑文件<code>/etc/docker/daemon.json</code>以添加自定义配置选项。</p>
+<h3 id="验证是否安装成功"><a href="#验证是否安装成功" class="headerlink" title="验证是否安装成功"></a>验证是否安装成功</h3><p> 5.通过运行镜像来验证 Docker 是否已正确安装。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo docker run hello-world<br></code></pre></td></tr></table></figure>
+
+<p>此命令下载测试映像并在容器中运行它。当 容器运行，它会打印一条消息并退出。</p>
+<p><img src="/../../images/Docker/image-20230802220618685.png" srcset="/img/loading.gif" lazyload alt="image-20230802220618685"></p>
+<p>第一次打开Docker的“hello-world”文件会先显示以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">Unable to find image <span class="hljs-string">&#x27;hello-world:latest&#x27;</span> locally	（本地无此文件）<br>Pulling repository hello-world						（从Docker官方库中拉取相关信息）<br>91c95931e552: Download complete						<br>a8219747be10: Download complete<br>Status: Downloaded newer image <span class="hljs-keyword">for</span> hello-world:latest（下载完成）<br></code></pre></td></tr></table></figure>
+
+<p>这意味着你的Docker安装成功了</p>
+<p>我们可以查看刚刚下载的hello-world镜像</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker images<br></code></pre></td></tr></table></figure>
+
+<p><img src="/../../images/Docker/image-20230802223312044.png" srcset="/img/loading.gif" lazyload alt="image-20230802223312044"></p>
+<p>也可以查看当前docker版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker -v<br></code></pre></td></tr></table></figure>
+
+<p><img src="/../../images/Docker/image-20230802224541726.png" srcset="/img/loading.gif" lazyload alt="image-20230802224541726"></p>
+<h1 id="Docker卸载"><a href="#Docker卸载" class="headerlink" title="Docker卸载"></a>Docker卸载</h1><p>删除安装包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get purge docker-ce<br></code></pre></td></tr></table></figure>
+
+<p>删除镜像、容器、配置文件等内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo rm -rf /var/lib/docker<br><span class="hljs-meta prompt_"># </span><span class="language-bash">docker默认工作路径！</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="阿里云镜像加速"><a href="#阿里云镜像加速" class="headerlink" title="阿里云镜像加速"></a>阿里云镜像加速</h1>
                 
               </div>
             
@@ -382,8 +472,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Docker</div>
-      <div>http://example.com/2023/07/30/Docker/Docker/</div>
+      <div>Docker简介</div>
+      <div>http://example.com/2023/07/30/Docker/Docker简介/</div>
     </div>
     <div class="license-meta">
       
