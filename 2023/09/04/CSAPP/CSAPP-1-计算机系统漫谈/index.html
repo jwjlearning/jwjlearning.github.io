@@ -23,28 +23,28 @@
 <meta property="og:site_name" content="Dreaming">
 <meta property="og:description" content="CSAPP第一章总览1.1信息就是位+上下文 源程序实际上就是一个由0和1组成的位(又称为比特)序列，8个位被组织成一组，称为字节。  使用ASCII标准来表示文本字符，这种方式实际上就是用一个唯一的单字节大小的整数值。来表示每个字  只由ASCII字符构成的文件称为文本文件，所有其他文件都称为二进制文件。  系统中所有的信息——包括磁盘文件、内存中的程序、内存中存放的用户数据以及网络上传送的数据">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829194117135.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829194201348.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829215158994.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829215548777.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829215631442.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829232725582.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829233400313.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829233657784.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829234449429.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005204092.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005341962.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005419762.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005450662.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005939786.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830010001125.png">
-<meta property="og:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830010146213.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955743.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955744.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955745.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955746.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955747.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955748.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955749.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955750.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955751.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955752.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955753.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955754.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955755.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955756.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955757.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955758.png">
 <meta property="article:published_time" content="2023-09-04T12:21:38.000Z">
-<meta property="article:modified_time" content="2023-09-04T12:58:52.208Z">
+<meta property="article:modified_time" content="2024-04-18T11:56:17.923Z">
 <meta property="article:author" content="Jwj-Learning">
 <meta property="article:tag" content="CSAPP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829194117135.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955743.png">
   
   
   
@@ -302,8 +302,8 @@
 </ul>
 <h2 id="1-2程序被翻译成不同格式"><a href="#1-2程序被翻译成不同格式" class="headerlink" title="1.2程序被翻译成不同格式"></a>1.2程序被翻译成不同格式</h2><ul>
 <li><p>C语句都必须被其他程序转化为一系列的低级机器语言指令。然后这些指令按照一种称为可执行目标程序的格式打好包，并以二进制磁盘文件的形式存放起来。目标程序也称为可执行目标文件。</p>
-<p>  <img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829194117135.png" srcset="/img/loading.gif" lazyload></p>
-<p>  <img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829194201348.png" srcset="/img/loading.gif" lazyload></p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955743.png" srcset="/img/loading.gif" lazyload></p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955744.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 <h2 id="1-3编译系统"><a href="#1-3编译系统" class="headerlink" title="1.3编译系统"></a>1.3编译系统</h2><ul>
@@ -325,7 +325,7 @@
 </li>
 </ul>
 <h2 id="1-4处理器读取并解释指令"><a href="#1-4处理器读取并解释指令" class="headerlink" title="1.4处理器读取并解释指令"></a>1.4处理器读取并解释指令</h2><p>例：</p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829215158994.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955745.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="1-4-1硬件组成"><a href="#1-4-1硬件组成" class="headerlink" title="1.4.1硬件组成"></a>1.4.1硬件组成</h3><ul>
 <li><p>总线</p>
 </li>
@@ -357,18 +357,18 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="1-4-2具体例子"><a href="#1-4-2具体例子" class="headerlink" title="1.4.2具体例子"></a>1.4.2具体例子</h3><p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829215548777.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829215631442.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="1-5高速缓存"><a href="#1-5高速缓存" class="headerlink" title="1.5高速缓存"></a>1.5高速缓存</h2><p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829232725582.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-2具体例子"><a href="#1-4-2具体例子" class="headerlink" title="1.4.2具体例子"></a>1.4.2具体例子</h3><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955746.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955747.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-5高速缓存"><a href="#1-5高速缓存" class="headerlink" title="1.5高速缓存"></a>1.5高速缓存</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955748.png" srcset="/img/loading.gif" lazyload></p>
 <p>高速缓存存储器(cache memory,简称为cache或高速缓存),作为暂时的集结区域，存放处理器近期可能会需要的信息。</p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829233400313.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955749.png" srcset="/img/loading.gif" lazyload></p>
 <p>Ll和L2高速缓存是用一种叫做静态随机访问存储器(SRAM)的硬件技术实现的。</p>
 <p>利用高速缓存的局部性原理，即程序具有访问局部区域里的数据和代码的趋势。通过让高速缓存里存放可能经常访问的数据，大部分的内存操作都能在快速的高速缓存中完成。</p>
-<h2 id="1-6存储设备层次结构"><a href="#1-6存储设备层次结构" class="headerlink" title="1.6存储设备层次结构"></a>1.6存储设备层次结构</h2><p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829233657784.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-6存储设备层次结构"><a href="#1-6存储设备层次结构" class="headerlink" title="1.6存储设备层次结构"></a>1.6存储设备层次结构</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955750.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>存储器层次结构主要思想是上一层的存储器作为低一层存储器的高速缓存。</strong></p>
 <p>寄存器文件是L1的高速缓存，L1是L2的高速缓存……最后的是主存的高速缓存，主存是磁盘的高速缓存……</p>
 <h2 id="1-7操作系统"><a href="#1-7操作系统" class="headerlink" title="1.7操作系统"></a>1.7操作系统</h2><p>我们可以把操作系统看成是应用程序和硬件之间插入的一层软件，所有应用程序对硬件的操作尝试都必须通过操作系统。</p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230829234449429.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955751.png" srcset="/img/loading.gif" lazyload></p>
 <p>操作系统有两个基本功能：</p>
 <p>(1)防止硬件被失控的应用程序滥用；</p>
 <p>(2)向应用程序提供简单一致的机制来控制复杂而又通常大不相同的低级硬件设备。</p>
@@ -384,18 +384,18 @@
 <p>并发运行，则是说一个进程的指令和另一个进程的指令是交错执行的。</p>
 <p>在大多数系统中，需要运行的进程数是多于可以运行它们的CPU个数的。传统系统在一个时刻只能执行一个程序，而先进的多核处理器同时能够执行多个程序。无论是在单核还是多核系统中，一个CPU看上去都像是在并发地执行多个进程，这是通过处理器在进程间切换来实现的。</p>
 <p>操作系统实现这种交错执行的机制称为&#x3D;&#x3D;上下文切换。&#x3D;&#x3D;</p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005204092.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="1-7-2线程"><a href="#1-7-2线程" class="headerlink" title="1.7.2线程"></a>1.7.2线程</h3><p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005341962.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955752.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-7-2线程"><a href="#1-7-2线程" class="headerlink" title="1.7.2线程"></a>1.7.2线程</h3><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955753.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="1-7-3虚拟内存"><a href="#1-7-3虚拟内存" class="headerlink" title="1.7.3虚拟内存"></a>1.7.3虚拟内存</h3><p>虚拟内存是一个抽象概念，它为每个进程提供了一个假象，即每个进程都在独占地使用主存。每个进程看到的内存都是一致的，称为虚拟地址空间。</p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005419762.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005450662.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955754.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955755.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="1-7-4文件"><a href="#1-7-4文件" class="headerlink" title="1.7.4文件"></a>1.7.4文件</h3><p>文件就是字节序列。所有计算机系统中的交互设备都可以看作文件。</p>
 <p>这个概念向应用程序提供了一个统一的视图来看待系统中各种I&#x2F;O设备。</p>
-<h2 id="1-8网络"><a href="#1-8网络" class="headerlink" title="1.8网络"></a>1.8网络</h2><p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830005939786.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830010001125.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-8网络"><a href="#1-8网络" class="headerlink" title="1.8网络"></a>1.8网络</h2><p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955756.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955757.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="1-9小结"><a href="#1-9小结" class="headerlink" title="1.9小结"></a>1.9小结</h2><p><strong>系统不仅仅只是硬件，系统是软硬件互相交织的集合体，它们共同协作来运行应用程序。</strong></p>
 <p>Amdahl定律：短板效应</p>
-<p><img src="/../../images/CSAPP-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E8%B0%88/image-20230830010146213.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404181955758.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="课后习题要点"><a href="#课后习题要点" class="headerlink" title="课后习题要点"></a>课后习题要点</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上是对现代计算机系统的综述和总结，以及对本书主要内容的梳理。</p>
 <p>下面是复习时主要关注的内容：</p>
 

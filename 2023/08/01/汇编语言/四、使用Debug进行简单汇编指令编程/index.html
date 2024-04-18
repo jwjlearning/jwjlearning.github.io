@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="Dreaming">
 <meta property="og:description" content="四、使用Debug进行简单汇编指令编程1.DOSBox和Debug安装及使用由于目前的Windows系统不再支持Debug的直接使用，所以我们需要先安装DOSBox和Debug来进行汇编指令编程。 安装 安装地址网上一般都能搜到，这里只贴出：DOSBox的地址：https:&#x2F;&#x2F;www.dosbox.com 使用 点开安装后一直Next，选个你需要的磁盘位置安装（一般是D盘）就可以，安装Debug的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Debug%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A8%8B/2bf3679bd8d446aea6926cf6fcffd97e.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404182009367.png">
 <meta property="article:published_time" content="2023-07-31T16:53:38.000Z">
-<meta property="article:modified_time" content="2023-07-31T16:57:14.008Z">
+<meta property="article:modified_time" content="2024-04-18T12:09:59.929Z">
 <meta property="article:author" content="Jwj-Learning">
 <meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Debug%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A8%8B/2bf3679bd8d446aea6926cf6fcffd97e.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404182009367.png">
   
   
   
@@ -281,7 +281,7 @@
 <p><strong>使用</strong></p>
 <p>点开安装后一直Next，选个你需要的磁盘位置安装（一般是D盘）就可以，安装Debug的时候需要注意Debug的文件路径。</p>
 <ol>
-<li>打开DOSBox后，使用“mount c Debug位置”来让DOSBox进入Debug程序运行；然后输入“C:”<br> ；最后输入“debug”就能运行了。<br> 但是每次进入DOSBox程序时都要重复输入该指令，所以我们可以打开DOSBox文件位置，找到“…Option.bat”文件，然后如图把指令挪过来：<br> <img src="/../images/%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Debug%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E7%BC%96%E7%A8%8B/2bf3679bd8d446aea6926cf6fcffd97e.png" srcset="/img/loading.gif" lazyload alt="DOSBox配置"><br> 以后每次打开就能直接运行Debug程序了。</li>
+<li>打开DOSBox后，使用“mount c Debug位置”来让DOSBox进入Debug程序运行；然后输入“C:”<br> ；最后输入“debug”就能运行了。<br> 但是每次进入DOSBox程序时都要重复输入该指令，所以我们可以打开DOSBox文件位置，找到“…Option.bat”文件，然后如图把指令挪过来：<br> <img src="https://cdn.jsdelivr.net/gh/jwjlearning/Blog-Pic@main/img/202404182009367.png" srcset="/img/loading.gif" lazyload><br> 以后每次打开就能直接运行Debug程序了。</li>
 <li>打开DOSCBox后可以发现窗口无法放大缩小，可以打开“…Option.bat”文件后找到<br> “windowresolution&#x3D;original<br>  output&#x3D;surface”代码，将它改为<br>  “windowresolution&#x3D;你需要的分辨率（如1200x800）<br>  output&#x3D;opengl”就能正常放大程序窗口了。</li>
 </ol>
 <h2 id="2-Debug命令"><a href="#2-Debug命令" class="headerlink" title="2.Debug命令"></a>2.Debug命令</h2><p>可以参照这篇文章进行了解和学习：<br>一般是先用r命令查看当前寄存器内部的值，再用a命令进行编程。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43809545/article/details/103640185">汇编语言DEBUG命令详解||汇编命令||DEBUG的常用命令：A,U,R,T,D,E,Q 等等</a></p>
